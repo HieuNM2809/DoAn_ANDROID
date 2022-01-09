@@ -1,5 +1,5 @@
-import 'package:doandidong/accountsetting.dart';
-import 'package:doandidong/home.dart';
+import 'package:doandidong/pages/accountsetting.dart';
+import 'package:doandidong/pages/home.dart';
 import 'package:flutter/material.dart';
 
 

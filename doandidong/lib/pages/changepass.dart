@@ -1,6 +1,5 @@
-import 'package:doandidong/footter.dart';
+import 'package:doandidong/layout/footter.dart';
 import 'package:flutter/material.dart';
-import 'accountsetting.dart';
 
 class Changepass extends StatefulWidget {
   const Changepass({Key? key}) : super(key: key);

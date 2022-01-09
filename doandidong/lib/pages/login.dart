@@ -1,6 +1,5 @@
+import 'package:doandidong/layout/footter.dart';
 import 'package:flutter/material.dart';
-import 'package:doandidong/home.dart';
-import 'package:doandidong/footter.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);

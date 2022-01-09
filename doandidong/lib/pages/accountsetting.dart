@@ -1,7 +1,5 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:doandidong/footter.dart';
 import 'changepass.dart';
 
 class AcSetting extends StatefulWidget {
