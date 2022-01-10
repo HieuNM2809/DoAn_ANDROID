@@ -1,4 +1,7 @@
-import 'package:doandidong/pages/login.dart';
+import 'package:doandidong/layout/pupop.dart';
+import 'package:doandidong/pages/accountPost.dart';
+import 'package:doandidong/pages/confirmPassword.dart';
+import 'package:doandidong/pages/loading.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Đồ án',
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: LoadingPage(),
     );
   }
 }
