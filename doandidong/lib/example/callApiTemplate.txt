@@ -1,0 +1,64 @@
+class ContactTab extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return ContactTabState();
+  }
+}
+
+class ContactTabState extends State<ContactTab> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: FutureBuilder<List<HotelObject>>(
+        future: HotelProvider.getAllHotel(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(
+              child: Text("Có lỗi xảy ra!!"),
+            );
+          } else if (snapshot.hasData) {
+            return PostList(lstPost: snapshot.data!);
+          }
+          return Center(
+            // Thanh load
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class PostList extends StatelessWidget {
+  final List<HotelObject> lstPost;
+  const PostList({Key? key, required this.lstPost}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(15),
+      child: ListView.builder(
+        itemCount: lstPost.length,
+        itemBuilder: (context, index) => Card(
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                width: double.infinity,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(lstPost[index].name,
+                      softWrap: true, style: TextStyle(color: Colors.white)),
+                ),
+                decoration: BoxDecoration(
+                    color: Colors.grey[700],
+                    border: Border(
+                        top: BorderSide(width: 0.5, color: Colors.grey),
+                        bottom: BorderSide(width: 0.5, color: Colors.grey))),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

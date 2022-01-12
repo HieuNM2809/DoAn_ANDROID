@@ -2,9 +2,14 @@ import 'package:doandidong/layout/pupop.dart';
 import 'package:doandidong/pages/accountPost.dart';
 import 'package:doandidong/pages/confirmPassword.dart';
 import 'package:doandidong/pages/loading.dart';
+import 'package:doandidong/pages/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'backend/object/hotel_object.dart';
+import 'backend/provider/hotel_provider.dart';
 
-void main() {
+void main() async {
+  await dotenv.load();
   runApp(const MyApp());
 }
 
