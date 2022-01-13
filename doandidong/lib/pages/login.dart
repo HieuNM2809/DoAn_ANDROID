@@ -1,3 +1,5 @@
+import 'package:doandidong/backend/provider/user_provider.dart';
+import 'package:doandidong/function/function.dart';
 import 'package:doandidong/layout/footter.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,31 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
+  TextEditingController txtEmail = TextEditingController();
+  TextEditingController txtPassword = TextEditingController();
+  void dangNhap() {
+    // check info empty
+    if (txtEmail.text == '' || txtPassword.text == '') {
+      final snackBar = SnackBar(
+        content: const Text('Vui lòng điền đầy đủ thông tin'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+    // check email
+    else if (isEmail(txtEmail.text) == false) {
+      final snackBar = SnackBar(
+        content: const Text('Vui lòng nhập đúng định dạng email'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } else {
+      //UserProvider.getToken(txtEmail.text, txtPassword.text);
+    }
+    // Navigator.push(
+    //     context,
+    //     MaterialPageRoute(
+    //         builder: (context) => FootterPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget images = Container(
@@ -42,20 +69,22 @@ class LoginPageState extends State<LoginPage> {
                 Container(
                   padding: EdgeInsets.fromLTRB(50, 20, 50, 0),
                   child: TextFormField(
+                    controller: txtEmail,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.zero,
                       ),
-                      prefixIcon: Icon(Icons.person),
-                      hintText: 'Tên tài khoản',
+                      prefixIcon: Icon(Icons.email),
+                      hintText: 'Email',
                     ),
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
                   child: TextFormField(
+                    controller: txtPassword,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -81,12 +110,7 @@ class LoginPageState extends State<LoginPage> {
                 Container(
                   padding: EdgeInsets.fromLTRB(100, 0, 80, 0),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FootterPage()));
-                    },
+                    onPressed: () => dangNhap(),
                     child: Text(
                       'Đăng nhập ',
                       style: TextStyle(

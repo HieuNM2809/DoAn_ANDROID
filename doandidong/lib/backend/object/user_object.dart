@@ -1,4 +1,3 @@
-
 class UserObject {
   final int id;
   final String name;
@@ -36,4 +35,11 @@ class UserObject {
         phone = r['phone'],
         created_at = r['created_at'],
         updated_at = r['updated_at'];
+}
+
+class TokenObject {
+  final String token;
+
+  TokenObject(this.token);
+  TokenObject.fromJson(Map<String, dynamic> r) : token = r['token'];
 }
