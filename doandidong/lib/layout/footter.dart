@@ -1,7 +1,10 @@
+import 'package:doandidong/pages/CategoryUI.dart';
 import 'package:doandidong/pages/accountsetting.dart';
 import 'package:doandidong/pages/home.dart';
 import 'package:flutter/material.dart';
-
+import 'package:doandidong/pages/ListSites.dart';
+import 'package:doandidong/pages/accountPost.dart';
+import 'package:doandidong/pages/add.dart';
 
 class FootterPage extends StatefulWidget {
   FootterPage({Key? key}) : super(key: key);
@@ -16,10 +19,10 @@ class FootterPageState extends State<FootterPage> {
   int SelectedIndex = 0;
   List<Widget> _widgetOption = <Widget>[
     HomePage(),
-    Text('data'),
-    Text('data'),
-    Text('data'),
-    AcSetting(),
+    CategoryUI(),
+    Add(),
+    ListSites(),
+    AccountPost(),
   ];
   void onItemTapped(int index) {
     setState(() {

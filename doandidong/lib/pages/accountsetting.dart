@@ -1,6 +1,9 @@
 import 'dart:ui';
+import 'package:doandidong/layout/footter.dart';
+import 'package:doandidong/pages/accountPost.dart';
 import 'package:flutter/material.dart';
 import 'changepass.dart';
+import 'package:doandidong/pages/changeinformation.dart';
 
 class AcSetting extends StatefulWidget {
   @override
@@ -66,7 +69,12 @@ class AcSettingState extends State<AcSetting> {
               Icon(Icons.person, size: 30, color: Colors.blue),
               SizedBox(width: 20),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Changeinformation()));
+                },
                 child: Text(
                   'Thông tin cá nhân',
                   style: TextStyle(
@@ -81,15 +89,16 @@ class AcSettingState extends State<AcSetting> {
             children: [
               Icon(Icons.folder, size: 30, color: Colors.blue),
               SizedBox(width: 20),
-              Text(
-                'Tự động sao lưu',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.black),
+              TextButton(
+                onPressed: () {},
+                child: Text('Tự động sao lưu',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.black)),
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(50, 10, 30, 0),
+                padding: EdgeInsets.fromLTRB(35, 10, 30, 0),
                 child: ElevatedButton(
                   onPressed: () {},
                   child: Text(
@@ -129,15 +138,16 @@ class AcSettingState extends State<AcSetting> {
             children: [
               Icon(Icons.vpn_key, size: 30, color: Colors.blue),
               SizedBox(width: 20),
-              Text(
-                'Bảo mật',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.black),
+              TextButton(
+                onPressed: () {},
+                child: Text('Bảo mật',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.black)),
               ),
               Container(
-                padding: EdgeInsets.fromLTRB(125, 10, 30, 0),
+                padding: EdgeInsets.fromLTRB(110, 10, 30, 0),
                 child: ElevatedButton(
                   onPressed: () {},
                   child: Text(
@@ -158,15 +168,18 @@ class AcSettingState extends State<AcSetting> {
           ),
           Row(
             children: [
-              Container(
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.exit_to_app, color: Colors.blue, size: 30),
-                ),
-              ),
-              Text(
-                'Thoát',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              Icon(Icons.exit_to_app, size: 30, color: Colors.blue),
+              SizedBox(width: 20),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => FootterPage()));
+                },
+                child: Text('Thoát',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.black)),
               ),
             ],
           ),
@@ -220,9 +233,9 @@ class AcSettingState extends State<AcSetting> {
             Avatar,
             Setting,
             Divider(
-              color: Colors.black.withOpacity(0.8),
-              indent: 90,
-            ),
+                color: Colors.black.withOpacity(0.8),
+                indent: 20,
+                endIndent: 20),
             Infomation,
           ],
         ),

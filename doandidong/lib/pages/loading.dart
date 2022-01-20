@@ -53,7 +53,7 @@ class _SpinKitScreenState extends State<LoadingPage> {
                         
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

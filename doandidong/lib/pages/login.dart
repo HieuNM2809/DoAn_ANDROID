@@ -2,6 +2,9 @@ import 'package:doandidong/backend/provider/user_provider.dart';
 import 'package:doandidong/function/function.dart';
 import 'package:doandidong/layout/footter.dart';
 import 'package:flutter/material.dart';
+import 'package:doandidong/pages/loading.dart';
+import 'package:doandidong/pages/Register.dart';
+import 'package:doandidong/pages/confirmPassword.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -64,7 +67,7 @@ class LoginPageState extends State<LoginPage> {
               children: [
                 Text(
                   'Đăng nhập',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                 ),
                 Container(
                   padding: EdgeInsets.fromLTRB(50, 20, 50, 0),
@@ -99,7 +102,12 @@ class LoginPageState extends State<LoginPage> {
                 Container(
                   padding: EdgeInsets.fromLTRB(200, 0, 50, 0),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ConfirmPassword()));
+                    },
                     child: Text(
                       'Quên mật khẩu',
                       style: TextStyle(
@@ -129,7 +137,10 @@ class LoginPageState extends State<LoginPage> {
                 Container(
                   padding: EdgeInsets.fromLTRB(100, 10, 80, 0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Register()));
+                    },
                     child: Text(
                       'Đăng ký',
                       style: TextStyle(

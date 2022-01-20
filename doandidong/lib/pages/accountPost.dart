@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'changepass.dart';
+import 'package:doandidong/pages/accountsetting.dart';
+import 'package:doandidong/layout/footter.dart';
 
 class AccountPost extends StatefulWidget {
   @override
@@ -34,6 +36,16 @@ class AccountPostState extends State<AccountPost> {
                   fontWeight: FontWeight.bold,
                   fontSize: 12,
                   color: Colors.black),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 30),
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AcSetting()));
+              },
+              icon: Icon(Icons.settings),
             ),
           ),
         ],

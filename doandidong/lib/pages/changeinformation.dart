@@ -4,14 +4,14 @@ import 'package:doandidong/pages/accountsetting.dart';
 import 'package:flutter/material.dart';
 import 'package:doandidong/layout/pupop.dart';
 
-class Changepass extends StatefulWidget {
-  const Changepass({Key? key}) : super(key: key);
+class Changeinformation extends StatefulWidget {
+  const Changeinformation({Key? key}) : super(key: key);
 
   @override
-  _ChangepassState createState() => _ChangepassState();
+  _ChangeinformationState createState() => _ChangeinformationState();
 }
 
-class _ChangepassState extends State<Changepass> {
+class _ChangeinformationState extends State<Changeinformation> {
   Widget Avatar = Container(
     child: Row(
       children: [
@@ -32,7 +32,7 @@ class _ChangepassState extends State<Changepass> {
           child: Text(
             'Họ và tên',
             style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 12, color: Colors.black),
+                fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
           ),
         ),
       ],
@@ -42,14 +42,9 @@ class _ChangepassState extends State<Changepass> {
     padding: EdgeInsets.only(left: 40, top: 40),
     child: Row(
       children: [
-        Icon(
-          Icons.lock,
-          size: 30,
-          color: Colors.blue,
-        ),
         SizedBox(width: 20),
         Text(
-          'Thay đổi mật khẩu',
+          'Thông tin cá nhân',
           style: TextStyle(
               fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
         ),
@@ -57,7 +52,7 @@ class _ChangepassState extends State<Changepass> {
     ),
   );
 
-  Widget NewPass = Container(
+  Widget Name = Container(
     padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
     child: TextFormField(
       decoration: InputDecoration(
@@ -66,12 +61,12 @@ class _ChangepassState extends State<Changepass> {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.zero,
         ),
-        prefixIcon: Icon(Icons.lock),
-        hintText: 'Mật khẩu mới',
+        prefixIcon: Icon(Icons.person),
+        hintText: 'Họ và tên',
       ),
     ),
   );
-  Widget ComfirmPass = Container(
+  Widget Email = Container(
     padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
     child: TextFormField(
       decoration: InputDecoration(
@@ -80,8 +75,22 @@ class _ChangepassState extends State<Changepass> {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.zero,
         ),
-        prefixIcon: Icon(Icons.lock),
-        hintText: 'Xác nhận mật khẩu',
+        prefixIcon: Icon(Icons.email),
+        hintText: 'Email',
+      ),
+    ),
+  );
+  Widget Phone = Container(
+    padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
+    child: TextFormField(
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.zero,
+        ),
+        prefixIcon: Icon(Icons.phone),
+        hintText: 'Số điện thoại',
       ),
     ),
   );
@@ -190,8 +199,9 @@ class _ChangepassState extends State<Changepass> {
                 color: Colors.black.withOpacity(0.8),
                 indent: 20,
                 endIndent: 20),
-            NewPass,
-            ComfirmPass,
+            Name,
+            Email,
+            Phone,
             btnConfirm,
             btnCancel,
           ],

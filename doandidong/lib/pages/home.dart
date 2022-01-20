@@ -14,6 +14,13 @@ class HomePageState extends State<HomePage> {
     child: Column(
       children: [
         Container(
+          padding: EdgeInsets.only(top: 10, left: 20, right: 20),
+          child: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+            child: Image.asset('images/thac.png'),
+          ),
+        ),
+        Container(
           padding: EdgeInsets.only(top: 10, left: 10, bottom: 10),
           alignment: Alignment.centerLeft,
           child: Text(
