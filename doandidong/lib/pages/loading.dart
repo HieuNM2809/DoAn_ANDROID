@@ -1,3 +1,4 @@
+import 'package:doandidong/layout/footter.dart';
 import 'package:doandidong/pages/home.dart';
 import 'package:doandidong/pages/login.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,8 +15,8 @@ class _SpinKitScreenState extends State<LoadingPage> {
   void load() async {
     setState(() {});
     Timer(Duration(seconds: 1), () {
-       Navigator.push(context,
-         MaterialPageRoute(builder: (context) => HomePage()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => FootterPage()));
     });
   }
 
@@ -24,6 +25,7 @@ class _SpinKitScreenState extends State<LoadingPage> {
     super.initState();
     load();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +53,6 @@ class _SpinKitScreenState extends State<LoadingPage> {
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
                         ),
-                        
                       ],
                     ),
                   ),

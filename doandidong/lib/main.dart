@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Đồ án',
       debugShowCheckedModeBanner: false,
-      home: HotelCategory(),
+      home: LoadingPage(),
     );
   }
 }
