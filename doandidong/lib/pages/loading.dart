@@ -1,3 +1,4 @@
+import 'package:doandidong/pages/home.dart';
 import 'package:doandidong/pages/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class _SpinKitScreenState extends State<LoadingPage> {
     setState(() {});
     Timer(Duration(seconds: 1), () {
        Navigator.push(context,
-         MaterialPageRoute(builder: (context) => LoginPage()));
+         MaterialPageRoute(builder: (context) => HomePage()));
     });
   }
 

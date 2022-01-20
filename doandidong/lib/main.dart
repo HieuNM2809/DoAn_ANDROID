@@ -1,8 +1,10 @@
 import 'package:doandidong/layout/footter.dart';
 import 'package:doandidong/layout/pupop.dart';
 import 'package:doandidong/pages/DetailSites.dart';
+import 'package:doandidong/pages/ListSites.dart';
 import 'package:doandidong/pages/accountPost.dart';
 import 'package:doandidong/pages/confirmPassword.dart';
+import 'package:doandidong/pages/hotelCategory.dart';
 import 'package:doandidong/pages/loading.dart';
 import 'package:doandidong/pages/login.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Đồ án',
       debugShowCheckedModeBanner: false,
-      home: LoadingPage(),
+      home: HotelCategory(),
     );
   }
 }
