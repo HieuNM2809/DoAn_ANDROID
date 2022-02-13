@@ -8,192 +8,36 @@ class CategoryUI extends StatefulWidget {
 }
 
 class _CategoryUIState extends State<CategoryUI> {
-  Widget _Carosel = Container(
-    padding: EdgeInsets.only(top: 7),
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(15),
-      child: Image.asset(
-        'images/image_1.jpg',
-        fit: BoxFit.fill,
-        width: 380,
-        height: 150,
-      ),
-    ),
-  );
-
-  Widget _RegionSites = Container(
-    padding: EdgeInsets.only(top: 10, left: 7, right: 7),
+  Widget DanhSach = Center(
     child: Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Danh mục vùng',
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                textStyle: TextStyle(fontSize: 20),
-              ),
-              onPressed: () {},
-              child: Text(
-                'Xem thêm >',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Color(0xffACACAC),
-                ),
-              ),
-            ),
-          ],
+        Container(
+          padding: EdgeInsets.only(top: 10, left: 10),
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Nhu cầu',
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+          ),
         ),
-        Row(
+        Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Stack(
               children: [
                 Container(
+                  padding: EdgeInsets.only(top: 15, left: 10, right: 10),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: Image.asset(
-                      'images/image_2.jpg',
+                      'images/diphuot.png',
                       fit: BoxFit.fill,
-                      width: 120,
-                      height: 110,
+                      width: 500,
+                      height: 140,
                     ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 70, left: 20.5),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Miền Bắc',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Stack(
-              children: [
-                Container(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'images/image_3.jpg',
-                      fit: BoxFit.fill,
-                      width: 120,
-                      height: 110,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 70, left: 20.5),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Miền Trung',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Stack(
-              children: [
-                Container(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'images/image_4.jpg',
-                      fit: BoxFit.fill,
-                      width: 120,
-                      height: 110,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 70, left: 20.5),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Miền Nam',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
-
-  Widget _Popular = Container(
-    padding: EdgeInsets.only(top: 13, left: 7, right: 7),
-    child: Column(
-      children: [
-        Row(
-          children: [
-            Text(
-              'Phổ biến',
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 15),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'images/image_1.jpg',
-                      fit: BoxFit.fill,
-                      width: 180,
-                      height: 200,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 190, left: 140),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 20,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 185, left: 12),
+                  padding: EdgeInsets.only(top: 105, left: 20),
                   width: 180,
                   child: Text(
                     'Đi phượt',
@@ -210,30 +54,19 @@ class _CategoryUIState extends State<CategoryUI> {
             Stack(
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 15),
+                  padding: EdgeInsets.only(top: 15, left: 10, right: 10),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: Image.asset(
-                      'images/image_2.jpg',
+                      'images/nghiduong.png',
                       fit: BoxFit.fill,
-                      width: 180,
-                      height: 200,
+                      width: 500,
+                      height: 140,
                     ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 190, left: 140),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 20,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.favorite_outline, color: Colors.black),
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 185, left: 12),
+                  padding: EdgeInsets.only(top: 105, left: 20),
                   width: 180,
                   child: Text(
                     'Nghỉ dưỡng',
@@ -247,41 +80,22 @@ class _CategoryUIState extends State<CategoryUI> {
                 ),
               ],
             ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             Stack(
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 15),
+                  padding: EdgeInsets.only(top: 15, left: 10, right: 10),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: Image.asset(
-                      'images/image_3.jpg',
+                      'images/camtrai.png',
                       fit: BoxFit.fill,
-                      width: 180,
-                      height: 200,
+                      width: 500,
+                      height: 140,
                     ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 190, left: 140),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 20,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite_border,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 185, left: 12),
+                  padding: EdgeInsets.only(top: 105, left: 20),
                   width: 180,
                   child: Text(
                     'Cắm trại',
@@ -298,33 +112,19 @@ class _CategoryUIState extends State<CategoryUI> {
             Stack(
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 15),
+                  padding: EdgeInsets.only(top: 15, left: 10, right: 10),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: Image.asset(
-                      'images/image_4.jpg',
+                      'images/dangoai.png',
                       fit: BoxFit.fill,
-                      width: 180,
-                      height: 200,
+                      width: 500,
+                      height: 140,
                     ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 190, left: 140),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 20,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 185, left: 12),
+                  padding: EdgeInsets.only(top: 105, left: 20),
                   width: 180,
                   child: Text(
                     'Dã ngoại',
@@ -338,44 +138,25 @@ class _CategoryUIState extends State<CategoryUI> {
                 ),
               ],
             ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             Stack(
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 15),
+                  padding: EdgeInsets.only(top: 15, left: 10, right: 10),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: Image.asset(
-                      'images/image_5.jpg',
+                      'images/giadinh.png',
                       fit: BoxFit.fill,
-                      width: 180,
-                      height: 200,
+                      width: 500,
+                      height: 140,
                     ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 190, left: 140),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 20,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite_border,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 185, left: 12),
+                  padding: EdgeInsets.only(top: 105, left: 20),
                   width: 180,
                   child: Text(
-                    'Leo núi',
+                    'Gia đình',
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.white,
@@ -389,33 +170,19 @@ class _CategoryUIState extends State<CategoryUI> {
             Stack(
               children: [
                 Container(
-                  padding: EdgeInsets.only(top: 15),
+                  padding: EdgeInsets.only(top: 15, left: 10, right: 10),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: Image.asset(
-                      'images/image_6.jpg',
+                      'images/capdoi.png',
                       fit: BoxFit.fill,
-                      width: 180,
-                      height: 200,
+                      width: 500,
+                      height: 140,
                     ),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 190, left: 140),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 20,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 185, left: 12),
+                  padding: EdgeInsets.only(top: 105, left: 20),
                   width: 180,
                   child: Text(
                     'Cặp đôi',
@@ -481,9 +248,7 @@ class _CategoryUIState extends State<CategoryUI> {
         child: ListView(
           children: [
             // slider(),
-            _Carosel,
-            _RegionSites,
-            _Popular,
+            DanhSach,
           ],
         ),
       ),

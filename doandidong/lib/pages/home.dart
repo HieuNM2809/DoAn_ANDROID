@@ -14,13 +14,6 @@ class HomePageState extends State<HomePage> {
     child: Column(
       children: [
         Container(
-          padding: EdgeInsets.only(top: 10, left: 20, right: 20),
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-            child: Image.asset('images/thac.png'),
-          ),
-        ),
-        Container(
           padding: EdgeInsets.only(top: 10, left: 10, bottom: 10),
           alignment: Alignment.centerLeft,
           child: Text(
@@ -144,271 +137,108 @@ class HomePageState extends State<HomePage> {
       ],
     ),
   );
-  Widget PhoBien = Center(
+  Widget DanhSach = Center(
     child: Column(
       children: [
         Container(
           padding: EdgeInsets.only(top: 10, left: 10),
           alignment: Alignment.centerLeft,
           child: Text(
-            'Phổ biến',
+            'Danh sách',
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
           ),
         ),
-        Container(
-          padding: EdgeInsets.only(top: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: EdgeInsets.only(left: 10),
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          width: 185,
-                          height: 150,
-                          padding: EdgeInsets.only(right: 10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            child: Image.asset(
-                              'images/bmt.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 100, left: 125),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 20,
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.favorite, color: Colors.red),
-                            ),
-                          ),
-                        ),
-                      ],
+        Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Stack(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 15, left: 10, right: 10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset(
+                      'images/ganhdadia.png',
+                      fit: BoxFit.fill,
+                      width: 500,
+                      height: 140,
                     ),
-                    Container(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text('Tượng đài chiến thắng...'),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 10),
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          width: 185,
-                          height: 150,
-                          padding: EdgeInsets.only(right: 10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            child: Image.asset(
-                              'images/dalat.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 100, left: 125),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 20,
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.favorite_outline,
-                                  color: Colors.black),
-                            ),
-                          ),
-                        ),
-                      ],
+                Container(
+                  padding: EdgeInsets.only(top: 105, left: 20),
+                  width: 180,
+                  child: Text(
+                    'Địa danh',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      backgroundColor: Colors.black54,
                     ),
-                    Container(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text('Quảng trường Lâm V...'),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.only(top: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: EdgeInsets.only(left: 10),
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          width: 185,
-                          height: 150,
-                          padding: EdgeInsets.only(right: 10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            child: Image.asset(
-                              'images/dubai.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 100, left: 125),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 20,
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.favorite, color: Colors.red),
-                            ),
-                          ),
-                        ),
-                      ],
+              ],
+            ),
+            Stack(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 15, left: 10, right: 10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset(
+                      'images/khachsan.png',
+                      fit: BoxFit.fill,
+                      width: 500,
+                      height: 140,
                     ),
-                    Container(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text('Khu du lịch sinh...'),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 10),
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          width: 185,
-                          height: 150,
-                          padding: EdgeInsets.only(right: 10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            child: Image.asset(
-                              'images/thac.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 100, left: 125),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 20,
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.favorite_outline,
-                                  color: Colors.black),
-                            ),
-                          ),
-                        ),
-                      ],
+                Container(
+                  padding: EdgeInsets.only(top: 105, left: 20),
+                  width: 180,
+                  child: Text(
+                    'Khách sạn',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      backgroundColor: Colors.black54,
                     ),
-                    Container(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text('Thác Dray Sap...'),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.only(top: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: EdgeInsets.only(left: 10),
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          width: 185,
-                          height: 150,
-                          padding: EdgeInsets.only(right: 10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            child: Image.asset(
-                              'images/doithong.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 100, left: 125),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 20,
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.favorite, color: Colors.red),
-                            ),
-                          ),
-                        ),
-                      ],
+              ],
+            ),
+            Stack(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 15, left: 10, right: 10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset(
+                      'images/quanan.png',
+                      fit: BoxFit.fill,
+                      width: 500,
+                      height: 140,
                     ),
-                    Container(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text('Đồi thông Buôn Tring...'),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 10),
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          width: 185,
-                          height: 150,
-                          padding: EdgeInsets.only(right: 10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            child: Image.asset(
-                              'images/baotang.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 100, left: 125),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: 20,
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.favorite_outline,
-                                  color: Colors.black),
-                            ),
-                          ),
-                        ),
-                      ],
+                Container(
+                  padding: EdgeInsets.only(top: 105, left: 20),
+                  width: 180,
+                  child: Text(
+                    'Quán ăn',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      backgroundColor: Colors.black54,
                     ),
-                    Container(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text('Bảo tàng cafe Buôn...'),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          ],
         ),
       ],
     ),
@@ -457,14 +287,12 @@ class HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Center(
-        child: ListView(
-          children: [
-            // slider(),
-            DanhMuc,
-            PhoBien,
-          ],
-        ),
+      body: Column(
+        children: [
+          // slider(),
+          DanhMuc,
+          DanhSach,
+        ],
       ),
     );
   }
