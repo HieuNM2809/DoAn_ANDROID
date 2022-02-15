@@ -1,3 +1,4 @@
+import 'package:doandidong/pages/ListSites.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -137,112 +138,7 @@ class HomePageState extends State<HomePage> {
       ],
     ),
   );
-  Widget DanhSach = Center(
-    child: Column(
-      children: [
-        Container(
-          padding: EdgeInsets.only(top: 10, left: 10),
-          alignment: Alignment.centerLeft,
-          child: Text(
-            'Danh sách',
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-          ),
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 15, left: 10, right: 10),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'images/ganhdadia.png',
-                      fit: BoxFit.fill,
-                      width: 500,
-                      height: 140,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 105, left: 20),
-                  width: 180,
-                  child: Text(
-                    'Địa danh',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      backgroundColor: Colors.black54,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Stack(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 15, left: 10, right: 10),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'images/khachsan.png',
-                      fit: BoxFit.fill,
-                      width: 500,
-                      height: 140,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 105, left: 20),
-                  width: 180,
-                  child: Text(
-                    'Khách sạn',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      backgroundColor: Colors.black54,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Stack(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 15, left: 10, right: 10),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset(
-                      'images/quanan.png',
-                      fit: BoxFit.fill,
-                      width: 500,
-                      height: 140,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 105, left: 20),
-                  width: 180,
-                  child: Text(
-                    'Quán ăn',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      backgroundColor: Colors.black54,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
+
   @override
   Widget build(BuildContext context) {
     var ImageList;
@@ -291,7 +187,140 @@ class HomePageState extends State<HomePage> {
         children: [
           // slider(),
           DanhMuc,
-          DanhSach,
+          Center(
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 10, left: 10),
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Danh sách',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          padding:
+                              EdgeInsets.only(top: 15, left: 10, right: 10),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ListSites()));
+                              },
+                              child: Image.asset(
+                                'images/ganhdadia.png',
+                                fit: BoxFit.fill,
+                                width: 500,
+                                height: 140,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 105, left: 20),
+                          width: 180,
+                          child: Text(
+                            'Địa danh',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              backgroundColor: Colors.black54,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Stack(
+                      children: [
+                        Container(
+                          padding:
+                              EdgeInsets.only(top: 15, left: 10, right: 10),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ListSites()));
+                              },
+                              child: Image.asset(
+                                'images/khachsan.png',
+                                fit: BoxFit.fill,
+                                width: 500,
+                                height: 140,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 105, left: 20),
+                          width: 180,
+                          child: Text(
+                            'Khách sạn',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              backgroundColor: Colors.black54,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Stack(
+                      children: [
+                        Container(
+                          padding:
+                              EdgeInsets.only(top: 15, left: 10, right: 10),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ListSites()));
+                              },
+                              child: Image.asset(
+                                'images/quanan.png',
+                                fit: BoxFit.fill,
+                                width: 500,
+                                height: 140,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(top: 105, left: 20),
+                          width: 180,
+                          child: Text(
+                            'Quán ăn',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              backgroundColor: Colors.black54,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

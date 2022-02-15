@@ -21,7 +21,6 @@ class FootterPageState extends State<FootterPage> {
     HomePage(),
     CategoryUI(),
     Add(),
-    ListSites(),
     AccountPost(),
   ];
   void onItemTapped(int index) {
@@ -49,10 +48,6 @@ class FootterPageState extends State<FootterPage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.add, color: Colors.grey),
               title: Text('Add'),
-              backgroundColor: Colors.white),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.map, color: Colors.grey),
-              title: Text('Sites'),
               backgroundColor: Colors.white),
           BottomNavigationBarItem(
               icon: Icon(Icons.person, color: Colors.grey),

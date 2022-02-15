@@ -17,6 +17,7 @@ import 'layout/footterdetail.dart';
 import 'package:doandidong/pages/changeinformation.dart';
 import 'package:doandidong/pages/home.dart';
 import 'package:doandidong/pages/CategoryUI.dart';
+import 'package:doandidong/pages/listshotel.dart';
 
 void main() async {
   await dotenv.load();
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Đồ án',
       debugShowCheckedModeBanner: false,
-      home: CategoryUI(),
+      home: ListHotel(),
     );
   }
 }
