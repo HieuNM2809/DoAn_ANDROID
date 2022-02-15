@@ -1,103 +1,29 @@
-import 'package:doandidong/backend/object/sites_object.dart';
-import 'package:doandidong/backend/provider/sites_provider.dart';
+import 'package:doandidong/backend/object/restaurant_object.dart';
+import 'package:doandidong/backend/provider/restaurant_provider.dart';
 import 'package:flutter/material.dart';
 
-class ListSites extends StatefulWidget {
-  const ListSites({Key? key}) : super(key: key);
+class RestaurantCategory extends StatefulWidget {
+  const RestaurantCategory({Key? key}) : super(key: key);
 
   @override
-  State<ListSites> createState() => _ListSitesState();
+  State<RestaurantCategory> createState() => RestaurantCategoryState();
 }
 
-class _ListSitesState extends State<ListSites> {
-  Widget _ChoseRegion = Container(
-    padding: EdgeInsets.only(top: 15),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(
-          padding: EdgeInsets.only(left: 7),
-          child: TextButton(
-            onPressed: () {},
-            child: Text(
-              'Tất cả',
-              style: TextStyle(fontSize: 16, color: Colors.white),
-            ),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(
-                Color(0xff33CCFF),
-              ),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
-            ),
-          ),
-        ),
-        Container(
-          child: TextButton(
-            onPressed: () {},
-            child: Text(
-              'Miền Bắc',
-              style: TextStyle(fontSize: 16, color: Colors.white),
-            ),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(
-                Color(0xff33CCFF),
-              ),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
-            ),
-          ),
-        ),
-        Container(
-          child: TextButton(
-            onPressed: () {},
-            child: Text(
-              'Miền Trung',
-              style: TextStyle(fontSize: 16, color: Colors.white),
-            ),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(
-                Color(0xff33CCFF),
-              ),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
-            ),
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.only(right: 7),
-          child: TextButton(
-            onPressed: () {},
-            child: Text(
-              'Miền Nam',
-              style: TextStyle(fontSize: 16, color: Colors.white),
-            ),
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(
-                Color(0xff33CCFF),
-              ),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
+class RestaurantCategoryState extends State<RestaurantCategory> {
+  List<RestaurantObject> _Restaurant = [];
+  void lsRes() async {
+    final data_Res = await RestaurantProvider.getAllRestaurant();
+    setState(() {});
+    _Restaurant = data_Res;
+  }
 
-  Widget _AllSites = Container(
+  @override
+  void initState() {
+    super.initState();
+    lsRes();
+  }
+
+  Widget _ChoseRes = Container(
     padding: EdgeInsets.only(top: 20, left: 7),
     child: Column(
       children: [
@@ -106,7 +32,7 @@ class _ListSitesState extends State<ListSites> {
           children: [
             Container(
               child: Text(
-                '10 Địa danh',
+                '10 Nhà hàng',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -144,19 +70,6 @@ class _ListSitesState extends State<ListSites> {
       ],
     ),
   );
-
-  List<SitesObject> _Sites = [];
-  void lsSite() async {
-    final data = await SiteProvider.getAllSite();
-    setState(() {});
-    _Sites = data;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    lsSite();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -204,11 +117,10 @@ class _ListSitesState extends State<ListSites> {
       body: Center(
         child: Column(
           children: [
-            _ChoseRegion,
-            _AllSites,
+            _ChoseRes,
             Expanded(
               child: ListView.builder(
-                itemCount: _Sites.length,
+                itemCount: _Restaurant.length,
                 itemBuilder: (context, index) => Container(
                   margin: EdgeInsets.all(5),
                   child: Card(
@@ -228,7 +140,7 @@ class _ListSitesState extends State<ListSites> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
                                 child: Image.asset(
-                                  'images/Vung_Tau.jpg',
+                                  'images/La_Sirena.jpg',
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -244,7 +156,7 @@ class _ListSitesState extends State<ListSites> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        _Sites[index].name,
+                                        _Restaurant[index].name_Res,
                                         softWrap: true,
                                         style: TextStyle(
                                           color: Colors.blue,
@@ -263,12 +175,10 @@ class _ListSitesState extends State<ListSites> {
                                   height: 4,
                                 ),
                                 Container(
-                                  height: 40,
-                                  width: 250,
+                                  padding: EdgeInsets.only(top: 5),
                                   child: Text(
-                                    _Sites[index].description,
+                                    'Nhà hàng này rất tuyệt vời',
                                     overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
                                     softWrap: true,
                                     style: TextStyle(
                                         fontSize: 14,
@@ -276,6 +186,7 @@ class _ListSitesState extends State<ListSites> {
                                   ),
                                 ),
                                 Container(
+                                  padding: EdgeInsets.only(top: 15),
                                   child: Row(
                                     children: [
                                       Icon(
@@ -283,7 +194,7 @@ class _ListSitesState extends State<ListSites> {
                                         color: Colors.red,
                                       ),
                                       Text(
-                                        'Bản đồ chỉ dẫn',
+                                        _Restaurant[index].address,
                                         softWrap: true,
                                         style: TextStyle(
                                             color: Colors.black,

@@ -19,7 +19,7 @@ class _DetailSitesState extends State<DetailSites> {
           ),
         ),
         child: Image.asset(
-          'images/image_1.jpg',
+          'images/Vung_Tau.jpg',
           fit: BoxFit.fill,
           height: 250,
           width: 200,
@@ -45,13 +45,36 @@ class _DetailSitesState extends State<DetailSites> {
         ),
       ),
       Container(
-        padding: EdgeInsets.only(top: 300, left: 7),
+        padding: EdgeInsets.only(top: 290, left: 7),
         child: Text(
-          'Vịnh hạ long tươi đẹp',
+          'Vũng Tàu',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
+        ),
+      ),
+      Container(
+        padding: EdgeInsets.only(top: 320, left: 7),
+        child: Text(
+          'Một địa danh biển tuyệt đẹp nằm ở Tỉnh BR-VT.',
+          style: TextStyle(),
+        ),
+      ),
+      Container(
+        padding: EdgeInsets.only(top: 345, left: 7),
+        child: Text(
+          'Bản đồ',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+      ),
+      Container(
+        padding: EdgeInsets.only(top: 370, left: 7),
+        child: Image.asset(
+          'images/Vung_Tau_Location.png',
+          fit: BoxFit.fill,
+          width: 400,
+          height: 200,
         ),
       ),
     ],

@@ -1,7 +1,7 @@
-import 'dart:convert';
-
 import 'package:doandidong/backend/object/sites_object.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class SiteProvider {
   static List<SitesObject> parseSO(String source) {
@@ -11,9 +11,13 @@ class SiteProvider {
     return ls;
   }
 
-  static Future<List<SitesObject>> fecthHarbou() async {
-    final response =
-        await http.get(Uri.parse('http://192.168.1.9:80/api/sites'));
+  static Future<List<SitesObject>> getAllSite() async {
+    String url = dotenv.env['API_URL_CUS']! + '/api/sites';
+    Map<String, String> userHeader = {
+      "Content-type": "application/json",
+      "Accept": "application/json"
+    };
+    final response = await http.get(Uri.parse(url), headers: userHeader);
     return parseSO(response.body);
   }
 }
