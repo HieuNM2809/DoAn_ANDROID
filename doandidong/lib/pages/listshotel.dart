@@ -133,7 +133,7 @@ class ListHotelState extends State<ListHotel> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        'Nguyễn Văn Trúc',
+                                        Hotel[index].name,
                                         softWrap: true,
                                         style: TextStyle(
                                           color: Colors.blue,
@@ -169,7 +169,7 @@ class ListHotelState extends State<ListHotel> {
                                         color: Colors.red,
                                       ),
                                       Text(
-                                        'Thị xã Buôn Hồ',
+                                        Hotel[index].address,
                                         softWrap: true,
                                         style: TextStyle(
                                             color: Colors.black,
