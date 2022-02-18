@@ -1,5 +1,8 @@
+import 'package:doandidong/backend/provider/user_provider.dart';
+import 'package:doandidong/function/function.dart';
 import 'package:flutter/material.dart';
 import 'package:doandidong/layout/footter.dart';
+import 'package:doandidong/pages/login.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -9,6 +12,51 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  TextEditingController txtName = TextEditingController();
+  TextEditingController txtEmail = TextEditingController();
+  TextEditingController txtPassword = TextEditingController();
+  TextEditingController txtPasswordAgent = TextEditingController();
+  Future<void> dangKy() async {
+    // check info empty
+    if (txtName.text == '' 
+      || txtEmail.text == '' 
+      || txtPassword.text == '' 
+      || txtPasswordAgent.text == '') {
+      final snackBar = SnackBar(
+        content: const Text('Vui lòng điền đầy đủ thông tin'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+    else if (isEmail(txtEmail.text) == false) {
+      final snackBar = SnackBar(
+        content: const Text('Vui lòng nhập đúng định dạng email'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } 
+    else if (txtPassword.text != txtPasswordAgent.text) {
+      final snackBar = SnackBar(
+        content: const Text('Nhập lại mật khẩu sai !'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+    else {
+      bool isSuccess = await UserProvider.register(txtName.text, txtEmail.text, txtPassword.text);
+      if(isSuccess){
+        Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => LoginPage()));
+         
+      }else{
+         final snackBar = SnackBar(
+          content: const Text('Đăng ký thất bại'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    }
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget _Image = Container(
@@ -46,6 +94,7 @@ class _RegisterState extends State<Register> {
                 Container(
                   padding: EdgeInsets.only(top: 15, left: 15, right: 15),
                   child: TextFormField(
+                    controller: txtName,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -59,6 +108,7 @@ class _RegisterState extends State<Register> {
                 Container(
                   padding: EdgeInsets.only(top: 10, left: 15, right: 15),
                   child: TextFormField(
+                    controller: txtEmail,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -72,6 +122,7 @@ class _RegisterState extends State<Register> {
                 Container(
                   padding: EdgeInsets.only(top: 10, left: 15, right: 15),
                   child: TextFormField(
+                    controller: txtPassword,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -85,6 +136,7 @@ class _RegisterState extends State<Register> {
                 Container(
                   padding: EdgeInsets.only(top: 10, left: 15, right: 15),
                   child: TextFormField(
+                    controller: txtPasswordAgent,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -99,12 +151,7 @@ class _RegisterState extends State<Register> {
                   width: 120,
                   padding: EdgeInsets.only(top: 10),
                   child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FootterPage()));
-                    },
+                    onPressed: () => dangKy(),
                     child: Text(
                       'Đăng ký',
                       style: TextStyle(fontSize: 16, color: Colors.black),

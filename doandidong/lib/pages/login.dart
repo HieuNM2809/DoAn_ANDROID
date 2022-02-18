@@ -18,7 +18,7 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   TextEditingController txtEmail = TextEditingController();
   TextEditingController txtPassword = TextEditingController();
-  void dangNhap() {
+  Future<void> dangNhap() async {
     // check info empty
     if (txtEmail.text == '' || txtPassword.text == '') {
       final snackBar = SnackBar(
@@ -33,12 +33,21 @@ class LoginPageState extends State<LoginPage> {
       );
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else {
-      //UserProvider.getToken(txtEmail.text, txtPassword.text);
+      bool isSuccess = await UserProvider.login(txtEmail.text, txtPassword.text);
+      if(isSuccess){
+        Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => FootterPage()));
+         
+      }else{
+         final snackBar = SnackBar(
+          content: const Text('Đăng nhập thất bại'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
     }
-    // Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //         builder: (context) => FootterPage()));
+    
   }
 
   @override

@@ -1,7 +1,9 @@
+import 'package:doandidong/backend/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'changepass.dart';
 import 'package:doandidong/pages/accountsetting.dart';
 import 'package:doandidong/layout/footter.dart';
+import 'package:doandidong/pages/login.dart';
 
 class AccountPost extends StatefulWidget {
   @override
@@ -11,6 +13,21 @@ class AccountPost extends StatefulWidget {
 }
 
 class AccountPostState extends State<AccountPost> {
+  Future<void> logout() async {
+      bool isSuccess = await UserProvider.logout();
+      if(isSuccess){
+        Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => LoginPage()));
+         
+      }else{
+         final snackBar = SnackBar(
+          content: const Text('Đăng xuất thất bại'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+  }
   @override
   Widget build(BuildContext context) {
     Widget Avatar = Container(
@@ -46,6 +63,13 @@ class AccountPostState extends State<AccountPost> {
                     MaterialPageRoute(builder: (context) => AcSetting()));
               },
               icon: Icon(Icons.settings),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 30),
+            child: IconButton(
+              onPressed: () => logout(),
+              icon: Icon(Icons.login),
             ),
           ),
         ],
