@@ -21,47 +21,38 @@ class AccountPost extends StatefulWidget {
 
 class AccountPostState extends State<AccountPost> {
   late final UserObject user;
-  List<PostObject> lstPost = [];
   String nameUser = 'No Name';
   String imageUser = 'No Image';
   TextEditingController txtEmail = TextEditingController();
   Future<void> logout() async {
-      bool isSuccess = await UserProvider.logout();
-      if(isSuccess){
-        Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => LoginPage()));
-         
-      }else{
-         final snackBar = SnackBar(
-          content: const Text('Đăng xuất thất bại'),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      }
+    bool isSuccess = await UserProvider.logout();
+    if (isSuccess) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => LoginPage()));
+    } else {
+      final snackBar = SnackBar(
+        content: const Text('Đăng xuất thất bại'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
   }
- 
-   Future<void>  _loadData() async {
-     await  UserProvider.getUser();
+
+  Future<void> _loadData() async {
+    await UserProvider.getUser();
     SharedPreferences pres = await SharedPreferences.getInstance();
     String us = pres.getString("user") ?? '';
     user = UserObject.fromJson(jsonDecode(us));
     setState(() {});
     nameUser = user.name;
     imageUser = user.image;
-
-    //load post 
-    // final data = await UserProvider.getAllPost();
-    // setState(() {});
-    // lstPost = data;
   }
-   @override
+
+  @override
   void initState() {
     super.initState();
     _loadData();
   }
- 
- 
+
   @override
   Widget build(BuildContext context) {
     Widget Avatar = Container(
@@ -74,11 +65,11 @@ class AccountPostState extends State<AccountPost> {
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(100)),
               child: Image.network(
-                    dotenv.env['API_URL_CUS']! +'/upload/users/' + imageUser,
-                    width: 271,
-                    height: 132,
-                    fit: BoxFit.cover,
-                  ),
+                dotenv.env['API_URL_CUS']! + '/upload/users/' + imageUser,
+                width: 271,
+                height: 132,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Container(
@@ -436,9 +427,10 @@ class AccountPostState extends State<AccountPost> {
             Avatar,
             Title,
             Divider(
-                color: Colors.black.withOpacity(0.8),
-                indent: 20,
-                endIndent: 20),
+              color: Colors.black.withOpacity(0.8),
+              indent: 20,
+              endIndent: 20,
+            ),
             Infomation,
           ],
         ),

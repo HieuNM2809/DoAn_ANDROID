@@ -11,7 +11,7 @@ class UserProvider {
     final pased = jsonDecode(reponseBody).cast<Map<String, dynamic>>();
     return pased.map<UserObject>((e) => UserObject.fromJson(e)).toList();
   }
-  static List<PostObject> parsePots(String responseBody) {
+  static List<PostObject> parsePost(String responseBody) {
     final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
     return parsed.map<PostObject>((e) => PostObject.fromJson(e)).toList();
   }
@@ -52,7 +52,7 @@ class UserProvider {
     }
   }
 
-  /* ==== Start Register ==== */
+  /* ====  Register ==== */
   static Future<bool> register(String name, String email, String password) async {
     String url =  dotenv.env['API_URL_CUS']! +'/api/user';
     final response = await http.post(Uri.parse(url),
@@ -65,7 +65,7 @@ class UserProvider {
             "birthday" : "28-09-2001",
             "position" :"4",
             "email": email,
-            "phone" :"0799501324"
+            "phone" :""
           }
         ),
         headers: {
@@ -100,15 +100,15 @@ class UserProvider {
    
 
   //=========== Ds bai viet User chia se
-  //  static Future<List<PostObject>> getAllPost() async {
-  //   String url = dotenv.env['API_URL_CUS']! + '/api/post';
-  //   Map<String, String> userHeader = {
-  //     "Content-type": "application/json",
-  //     "Accept": "application/json"
-  //   };
-  //   final response = await http.get(Uri.parse(url), headers: userHeader);
-  //   return parsePots(response.body);
-  // }
+   static Future<List<PostObject>> getAllPost() async {
+    String url = dotenv.env['API_URL_CUS']! + '/api/post';
+    Map<String, String> userHeader = {
+      "Content-type": "application/json",
+      "Accept": "application/json"
+    };
+    final response = await http.get(Uri.parse(url), headers: userHeader);
+    return parsePost(response.body);
+  }
 
   
  static Future<UserObject> getUser() async {
@@ -124,7 +124,7 @@ class UserProvider {
     return UserObject.fromJson(jsonDecode(response.body));
   }
 
-  /* ==== Start Register ==== */
+  /* ==== Register ==== */
   static Future<bool> updateInfoUser( String name,String email, String phone) async {
     var id = await getIdLogin();
    String url =  dotenv.env['API_URL_CUS']! +'/api/user/$id';
@@ -174,36 +174,3 @@ class UserProvider {
  
 
 }
-
-
-
-/* ==== Start Register ==== */
-  // static Future<bool> updateInfor(
-  //     String hoTen,
-  //     String email,
-  //     String soDienThoai,
-  //     int trangThaiHoTen,
-  //     int trangThaiSDT,
-  //     int trangThaiEmail) async {
-  //   var token = await getToken();
-  //   final response = await http.post(Uri.parse(urlAPI + 'user/update-infor'),
-  //       body: jsonEncode({
-  //         'hoTen': hoTen,
-  //         'email': email,
-  //         'soDienThoai': soDienThoai,
-  //         'trangThaiHoTen': trangThaiHoTen,
-  //         'trangThaiSDT': trangThaiSDT,
-  //         'trangThaiEmail': trangThaiEmail,
-  //       }),
-  //       headers: {
-  //         'Content-type': 'application/json',
-  //         'Accept': 'application/json',
-  //         'Authorization': 'Bearer $token',
-  //       });
-  //   final jsonRespon = jsonDecode(response.body);
-  //   if (jsonRespon["status_code"] == 200) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
