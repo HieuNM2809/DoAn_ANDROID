@@ -1,5 +1,12 @@
+import 'dart:convert';
+
+import 'package:doandidong/backend/object/post_object.dart';
+import 'package:doandidong/backend/object/user_object.dart';
+import 'package:doandidong/backend/provider/post_provider.dart';
 import 'package:doandidong/backend/provider/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'changepass.dart';
 import 'package:doandidong/pages/accountsetting.dart';
 import 'package:doandidong/layout/footter.dart';
@@ -13,6 +20,11 @@ class AccountPost extends StatefulWidget {
 }
 
 class AccountPostState extends State<AccountPost> {
+  late final UserObject user;
+  List<PostObject> lstPost = [];
+  String nameUser = 'No Name';
+  String imageUser = 'No Image';
+  TextEditingController txtEmail = TextEditingController();
   Future<void> logout() async {
       bool isSuccess = await UserProvider.logout();
       if(isSuccess){
@@ -28,6 +40,28 @@ class AccountPostState extends State<AccountPost> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
   }
+ 
+   Future<void>  _loadData() async {
+     await  UserProvider.getUser();
+    SharedPreferences pres = await SharedPreferences.getInstance();
+    String us = pres.getString("user") ?? '';
+    user = UserObject.fromJson(jsonDecode(us));
+    setState(() {});
+    nameUser = user.name;
+    imageUser = user.image;
+
+    //load post 
+    // final data = await UserProvider.getAllPost();
+    // setState(() {});
+    // lstPost = data;
+  }
+   @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+ 
+ 
   @override
   Widget build(BuildContext context) {
     Widget Avatar = Container(
@@ -39,16 +73,18 @@ class AccountPostState extends State<AccountPost> {
             padding: EdgeInsets.only(left: 20, top: 20),
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(100)),
-              child: Image.asset(
-                'images/mienbac.png',
-                fit: BoxFit.cover,
-              ),
+              child: Image.network(
+                    dotenv.env['API_URL_CUS']! +'/upload/users/' + imageUser,
+                    width: 271,
+                    height: 132,
+                    fit: BoxFit.cover,
+                  ),
             ),
           ),
           Container(
             padding: EdgeInsets.all(20),
             child: Text(
-              'Nguyễn Minh Hiếu',
+              nameUser,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 12,

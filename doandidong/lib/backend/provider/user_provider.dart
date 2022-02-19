@@ -1,14 +1,21 @@
 import 'dart:convert';
+import 'package:doandidong/backend/object/hotel_object.dart';
+import 'package:doandidong/backend/object/post_object.dart';
 import 'package:doandidong/backend/object/user_object.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserProvider {
-  static List<UserObject> parseUsers(String responseBody) {
-    final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
-    return parsed.map<UserObject>((e) => UserObject.fromJson(e)).toList();
+  static List<UserObject> parseUsers(String reponseBody) {
+    final pased = jsonDecode(reponseBody).cast<Map<String, dynamic>>();
+    return pased.map<UserObject>((e) => UserObject.fromJson(e)).toList();
   }
+  static List<PostObject> parsePots(String responseBody) {
+    final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
+    return parsed.map<PostObject>((e) => PostObject.fromJson(e)).toList();
+  }
+
   static Future<dynamic> getToken() async {
     /* ==== Lấy token từ Storage ==== */
     SharedPreferences pres = await SharedPreferences.getInstance();
@@ -44,7 +51,7 @@ class UserProvider {
             "name" :name,
             "user":name,
             "password1" :password,
-            "image": "hieu.png",
+            "image": "1.png",
             "birthday" : "28-09-2001",
             "position" :"4",
             "email": email,
@@ -80,8 +87,36 @@ class UserProvider {
       return false;
     }
   }
+   
+
+  //=========== Ds bai viet User chia se
+  //  static Future<List<PostObject>> getAllPost() async {
+  //   String url = dotenv.env['API_URL_CUS']! + '/api/post';
+  //   Map<String, String> userHeader = {
+  //     "Content-type": "application/json",
+  //     "Accept": "application/json"
+  //   };
+  //   final response = await http.get(Uri.parse(url), headers: userHeader);
+  //   return parsePots(response.body);
+  // }
+
+  
+ static Future<UserObject> getUser() async {
+    //var token = await getToken();
+    String url =  dotenv.env['API_URL_CUS']! +'/api/sanctum/user';
+    final response = await http.get(Uri.parse(url), headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer 74|BuEkN8NwFgQcsXVBF1qzgkh4escwpFQjAdhnbxV7',
+    });
+    SharedPreferences pres = await SharedPreferences.getInstance();
+    String user = response.body;
+    pres.setString('user', user);
+    return UserObject.fromJson(jsonDecode(response.body));
+  }
+ 
 
 }
+
 
 
 /* ==== Start Register ==== */
