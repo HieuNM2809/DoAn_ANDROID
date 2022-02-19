@@ -1,8 +1,17 @@
+import 'dart:convert';
+
+import 'package:doandidong/backend/object/post_object.dart';
+import 'package:doandidong/backend/object/user_object.dart';
+import 'package:doandidong/backend/provider/user_provider.dart';
+import 'package:doandidong/function/function.dart';
 import 'package:doandidong/layout/footter.dart';
 import 'package:doandidong/pages/accountPost.dart';
 import 'package:doandidong/pages/accountsetting.dart';
+import 'package:doandidong/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:doandidong/layout/pupop.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Changeinformation extends StatefulWidget {
   const Changeinformation({Key? key}) : super(key: key);
@@ -12,91 +21,177 @@ class Changeinformation extends StatefulWidget {
 }
 
 class _ChangeinformationState extends State<Changeinformation> {
-  Widget Avatar = Container(
-    child: Row(
-      children: [
-        Container(
-          width: 150,
-          height: 150,
-          padding: EdgeInsets.only(left: 20, top: 20),
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(100)),
-            child: Image.asset(
-              'images/mienbac.png',
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.only(left: 20),
-          child: Text(
-            'Họ và tên',
-            style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black),
-          ),
-        ),
-      ],
-    ),
-  );
-  Widget ChangePass = Container(
-    padding: EdgeInsets.only(left: 40, top: 40),
-    child: Row(
-      children: [
-        SizedBox(width: 20),
-        Text(
-          'Thông tin cá nhân',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
-        ),
-      ],
-    ),
-  );
+  late final UserObject user;
+  String nameUser = 'No Name';
+  String imageUser = 'No Image';
+  TextEditingController txtName = TextEditingController();
+  TextEditingController txtEmail = TextEditingController();
+  TextEditingController txtPhone = TextEditingController();
+  Future<void> logout() async {
+    bool isSuccess = await UserProvider.logout();
+    if (isSuccess) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => LoginPage()));
+    } else {
+      final snackBar = SnackBar(
+        content: const Text('Đăng xuất thất bại'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+  }
 
-  Widget Name = Container(
-    padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
-    child: TextFormField(
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.zero,
-        ),
-        prefixIcon: Icon(Icons.person),
-        hintText: 'Họ và tên',
-      ),
-    ),
-  );
-  Widget Email = Container(
-    padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
-    child: TextFormField(
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.zero,
-        ),
-        prefixIcon: Icon(Icons.email),
-        hintText: 'Email',
-      ),
-    ),
-  );
-  Widget Phone = Container(
-    padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
-    child: TextFormField(
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.zero,
-        ),
-        prefixIcon: Icon(Icons.phone),
-        hintText: 'Số điện thoại',
-      ),
-    ),
-  );
+  Future<void> _loadData() async {
+    await UserProvider.getUser();
+    SharedPreferences pres = await SharedPreferences.getInstance();
+    String us = pres.getString("user") ?? '';
+    user = UserObject.fromJson(jsonDecode(us));
+    setState(() {});
+    nameUser = user.name;
+    imageUser = user.image;
+    txtName.text = user.name;
+    txtEmail.text = user.email;
+    txtPhone.text = user.phone;
+  }
+   Future<void> updateInfo() async {
+  // check info empty
+    if (txtEmail.text == '' || txtName.text == '' || txtPhone.text == '') {
+      final snackBar = SnackBar(
+        content: const Text('Vui lòng điền đầy đủ thông tin'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+    // check email
+    else if (isEmail(txtEmail.text) == false) {
+      final snackBar = SnackBar(
+        content: const Text('Vui lòng nhập đúng định dạng email'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } else {
+      bool isSuccess = await UserProvider.updateInfoUser(txtName.text, txtEmail.text, txtPhone.text);
+      if(isSuccess){
+         final snackBar = SnackBar(
+          content: const Text('Cập nhật thành công'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AcSetting()));
+         
+      }else{
+         final snackBar = SnackBar(
+          content: const Text('Cập nhật thất bại'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        Navigator.pop(context, 'Cancel');
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
 
   @override
   Widget build(BuildContext context) {
+    Widget Avatar = Container(
+      child: Row(
+        children: [
+          Container(
+            width: 150,
+            height: 150,
+            padding: EdgeInsets.only(left: 20, top: 20),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(100)),
+              child: Image.network(
+                    dotenv.env['API_URL_CUS']! +'/upload/users/' + imageUser,
+                    width: 271,
+                    height: 132,
+                    fit: BoxFit.cover,
+                  ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              nameUser,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                  color: Colors.black),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(left: 30),
+            child: IconButton(
+              onPressed: () => logout(),
+              icon: Icon(Icons.login),
+            ),
+          ),
+        ],
+      ),
+    );
+    Widget ChangePass = Container(
+      padding: EdgeInsets.only(left: 40, top: 40),
+      child: Row(
+        children: [
+          SizedBox(width: 20),
+          Text(
+            'Thông tin cá nhân',
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
+          ),
+        ],
+      ),
+    );
+
+    Widget Name = Container(
+      padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
+      child: TextFormField(
+        controller: txtName,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.zero,
+          ),
+          prefixIcon: Icon(Icons.person),
+          hintText: 'Họ và tên',
+        ),
+      ),
+    );
+    Widget Email = Container(
+      padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
+      child: TextFormField(
+        controller: txtEmail,
+        readOnly: true,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.zero,
+          ),
+          prefixIcon: Icon(Icons.email),
+          hintText: 'Email',
+        ),
+      ),
+    );
+    Widget Phone = Container(
+      padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
+      child: TextFormField(
+        controller: txtPhone,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.zero,
+          ),
+          prefixIcon: Icon(Icons.phone),
+          hintText: 'Số điện thoại',
+        ),
+      ),
+    );
+
     Widget btnConfirm = Container(
       padding: EdgeInsets.fromLTRB(100, 10, 80, 0),
       child: ElevatedButton(
@@ -111,8 +206,7 @@ class _ChangeinformationState extends State<Changeinformation> {
                 child: const Text('Huỷ'),
               ),
               TextButton(
-                onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AcSetting())),
+                onPressed: () => updateInfo(),
                 child: const Text('Đồng ý'),
               ),
             ],
@@ -199,8 +293,8 @@ class _ChangeinformationState extends State<Changeinformation> {
                 color: Colors.black.withOpacity(0.8),
                 indent: 20,
                 endIndent: 20),
-            Name,
             Email,
+            Name,
             Phone,
             btnConfirm,
             btnCancel,

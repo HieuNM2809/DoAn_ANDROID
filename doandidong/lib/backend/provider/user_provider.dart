@@ -22,6 +22,12 @@ class UserProvider {
     var token = pres.getString('token');
     return token;
   }
+  static Future<dynamic> getIdLogin() async {
+    /* ==== Lấy token từ Storage ==== */
+    SharedPreferences pres2 = await SharedPreferences.getInstance();
+    var id = pres2.getInt('id');
+    return id;
+  }
   static Future<bool> login(String email, String password) async {
     // String url =  'http://dulich.local/api/sanctum/token';
     String url =  dotenv.env['API_URL_CUS']! +'/api/sanctum/token';
@@ -34,7 +40,11 @@ class UserProvider {
     if (jsonRespon["status"] == '200') {
       // /* ==== Lưu trữ token vào Storage ==== */
       SharedPreferences pres = await SharedPreferences.getInstance();
+      SharedPreferences pres2 = await SharedPreferences.getInstance();
+      SharedPreferences pres3 = await SharedPreferences.getInstance();
       pres.setString('token', jsonRespon["token"]);
+      pres2.setInt('id', jsonRespon["id"]);
+      pres3.setString('password', password);
       // /* ==== In ra token ==== */
       return true;
     } else {
@@ -102,16 +112,64 @@ class UserProvider {
 
   
  static Future<UserObject> getUser() async {
-    //var token = await getToken();
+    var token = await getToken();
     String url =  dotenv.env['API_URL_CUS']! +'/api/sanctum/user';
     final response = await http.get(Uri.parse(url), headers: {
       'Accept': 'application/json',
-      'Authorization': 'Bearer 74|BuEkN8NwFgQcsXVBF1qzgkh4escwpFQjAdhnbxV7',
+      'Authorization': 'Bearer $token',
     });
     SharedPreferences pres = await SharedPreferences.getInstance();
     String user = response.body;
     pres.setString('user', user);
     return UserObject.fromJson(jsonDecode(response.body));
+  }
+
+  /* ==== Start Register ==== */
+  static Future<bool> updateInfoUser( String name,String email, String phone) async {
+    var id = await getIdLogin();
+   String url =  dotenv.env['API_URL_CUS']! +'/api/user/$id';
+    final response = await http.put(Uri.parse(url),
+        body: jsonEncode(
+          {
+            "name" :name,
+            "user":name,
+            "image": "1.png",
+            "birthday" : "28-09-2001",
+            "position" :"4",
+            "email": email,
+            "phone" :phone
+          }
+        ),
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+        });
+    final jsonRespon = jsonDecode(response.body);
+    if (jsonRespon["status"] == '200') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  static Future<bool> changepasword( String password) async {
+    var id = await getIdLogin();
+   String url =  dotenv.env['API_URL_CUS']! +'/api/user/changepassword/$id';
+    final response = await http.post(Uri.parse(url),
+        body: jsonEncode(
+          {
+            "password" :password,
+          }
+        ),
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+        });
+    final jsonRespon = jsonDecode(response.body);
+    if (jsonRespon["status"] == '200') {
+      return true;
+    } else {
+      return false;
+    }
   }
  
 

@@ -156,7 +156,7 @@ class AcSettingState extends State<AcSetting> {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Changepass()));
                   },
-                  child: Text('Mật khẩu',
+                  child: Text('Đổi mật khẩu',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
