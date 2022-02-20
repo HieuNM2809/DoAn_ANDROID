@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Đồ án',
       debugShowCheckedModeBanner: false,
-      home: ListHotel(),
+      home: LoginPage(),
     );
   }
 }

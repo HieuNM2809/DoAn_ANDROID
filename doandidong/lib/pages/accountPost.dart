@@ -1,9 +1,9 @@
 import 'dart:convert';
-
 import 'package:doandidong/backend/object/post_object.dart';
 import 'package:doandidong/backend/object/user_object.dart';
 import 'package:doandidong/backend/provider/post_provider.dart';
 import 'package:doandidong/backend/provider/user_provider.dart';
+import 'package:doandidong/pages/user/PostShare.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -107,7 +107,18 @@ class AccountPostState extends State<AccountPost> {
       children: [
         SizedBox(height: 40),
         Text(
-          'Các bài viết cá nhân',
+          'Các bài viết đã chia sẻ',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
+        ),
+      ],
+    );
+    Widget Title2 = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(height: 40),
+        Text(
+          'Danh sách địa danh đã like',
           style: TextStyle(
               fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
         ),
@@ -431,7 +442,82 @@ class AccountPostState extends State<AccountPost> {
               indent: 20,
               endIndent: 20,
             ),
-            Infomation,
+            Container(
+              padding: EdgeInsets.only(left: 10),
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        width: 185,
+                        height: 150,
+                        padding: EdgeInsets.only(right: 10),
+                        child: ClipRRect(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10)),
+                          child: Image.asset(
+                            'images/bmt.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text('Xem chi tiết'),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => PostShare()));
+                    },
+                   icon: Icon(Icons.search),
+                  ),
+                ],
+              ),
+            ),
+            Title2,
+            Divider(
+              color: Colors.black.withOpacity(0.8),
+              indent: 20,
+              endIndent: 20,
+            ),
+             Container(
+              padding: EdgeInsets.only(left: 10),
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      Container(
+                        width: 185,
+                        height: 150,
+                        padding: EdgeInsets.only(right: 10),
+                        child: ClipRRect(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10)),
+                          child: Image.asset(
+                            'images/dalat.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Text('Xem chi tiết'),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => PostShare()));
+                    },
+                   icon: Icon(Icons.search),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
