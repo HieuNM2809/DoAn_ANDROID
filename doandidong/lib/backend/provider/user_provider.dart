@@ -171,6 +171,29 @@ class UserProvider {
       return false;
     }
   }
+   /* ====  Register ==== */
+  static Future<bool> suggestSite(String name, String description, String address) async {
+    String url =  dotenv.env['API_URL_CUS']! +'/api/sites';
+    final response = await http.post(Uri.parse(url),
+        body: jsonEncode(
+          {
+            "name" :name,
+            "description" :description,
+            "status": "1",  // chua duyet
+          }
+        ),
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+        });
+    final jsonRespon = jsonDecode(response.body);
+
+    if (jsonRespon["status"] == '200') {
+      return true;
+    } else {
+      return false;
+    }
+  }
  
 
 }

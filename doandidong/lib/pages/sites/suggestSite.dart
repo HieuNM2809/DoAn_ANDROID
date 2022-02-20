@@ -13,8 +13,11 @@ class Suggest extends StatefulWidget {
 }
 
 class _AddState extends State<Suggest> {
+  TextEditingController txtName = TextEditingController();
+  TextEditingController txtDescription = TextEditingController();
+  TextEditingController txtAddress = TextEditingController();
   String nameUser = '';
-    late final UserObject user;
+  late final UserObject user;
   Future<void> _loadData() async {
     await UserProvider.getUser();
     SharedPreferences pres = await SharedPreferences.getInstance();
@@ -24,11 +27,39 @@ class _AddState extends State<Suggest> {
     nameUser = user.name;
   }
 
+  Future<void> addSites() async {
+    if (txtName.text == '' ||
+        txtDescription.text == '' ||
+        txtAddress.text == '') {
+      Navigator.pop(context, 'Cancel');
+      final snackBar = SnackBar(
+        content: const Text('Vui lòng điền đầy đủ thông tin'),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } else {
+      bool isSuccess = await UserProvider.suggestSite(txtName.text, txtDescription.text, txtAddress.text);
+      if (isSuccess) {
+        Navigator.pop(context, 'Cancel');
+        final snackBar = SnackBar(
+          content: const Text('Đề xuất thành công'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      } else {
+        Navigator.pop(context, 'Cancel');
+        final snackBar = SnackBar(
+          content: const Text('Đề xuất thất bại'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     _loadData();
   }
+
   @override
   Widget build(BuildContext context) {
     Widget Login = Container(
@@ -80,6 +111,7 @@ class _AddState extends State<Suggest> {
                 Container(
                   padding: EdgeInsets.only(left: 20, top: 20),
                   child: TextField(
+                    controller: txtName,
                     decoration: InputDecoration.collapsed(
                         hintText: 'Tên địa danh',
                         hintStyle: TextStyle(
@@ -91,6 +123,7 @@ class _AddState extends State<Suggest> {
                 Container(
                   padding: EdgeInsets.only(left: 20, top: 20),
                   child: TextField(
+                    controller: txtDescription,
                     decoration: InputDecoration.collapsed(
                         hintText: 'Miêu tả',
                         hintStyle: TextStyle(
@@ -102,6 +135,7 @@ class _AddState extends State<Suggest> {
                 Container(
                   padding: EdgeInsets.only(left: 20, top: 20),
                   child: TextField(
+                    controller: txtAddress,
                     decoration: InputDecoration.collapsed(
                         hintText: 'Địa chỉ',
                         hintStyle: TextStyle(
@@ -142,17 +176,14 @@ class _AddState extends State<Suggest> {
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
                         title: const Text('Thông báo'),
-                        content: const Text('Xác nhận đăng bài viết mới'),
+                        content: const Text('Xác nhận đề xuất địa danh'),
                         actions: <Widget>[
                           TextButton(
                             onPressed: () => Navigator.pop(context, 'Cancel'),
                             child: const Text('Huỷ'),
                           ),
                           TextButton(
-                            onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => FootterPage())),
+                            onPressed: () => addSites(),
                             child: const Text('Đồng ý'),
                           ),
                         ],
