@@ -35,11 +35,10 @@ class LoginPageState extends State<LoginPage> {
     } else {
       bool isSuccess = await UserProvider.login(txtEmail.text, txtPassword.text);
       if(isSuccess){
-        Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => FootterPage()));
-         
+         Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => FootterPage()),
+            (route) => false);
       }else{
          final snackBar = SnackBar(
           content: const Text('Đăng nhập thất bại'),
@@ -128,12 +127,7 @@ class LoginPageState extends State<LoginPage> {
                 Container(
                   padding: EdgeInsets.fromLTRB(100, 0, 80, 0),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => FootterPage()),
-                          (route) => false);
-                    },
+                    onPressed: () =>dangNhap(),
                     child: Text(
                       'Đăng nhập ',
                       style: TextStyle(
