@@ -89,7 +89,7 @@ class AccountPostState extends State<AccountPost> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => AcSetting()));
               },
-              icon: Icon(Icons.settings),
+              icon: Icon(Icons.fullscreen),
             ),
           ),
           Container(
@@ -394,7 +394,7 @@ class AccountPostState extends State<AccountPost> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff33ccff),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu_open)),
+        //leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu_open)),
         title: Stack(
           children: [
             Container(

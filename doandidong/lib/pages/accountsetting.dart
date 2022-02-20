@@ -6,6 +6,7 @@ import 'package:doandidong/backend/provider/user_provider.dart';
 import 'package:doandidong/layout/footter.dart';
 import 'package:doandidong/pages/accountPost.dart';
 import 'package:doandidong/pages/login.dart';
+import 'package:doandidong/pages/sites/suggestSite.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'changepass.dart';
@@ -116,9 +117,27 @@ class AcSettingState extends State<AcSetting> {
         ],
       ),
     );
+    Widget Setting2 = Container(
+      padding: EdgeInsets.only(left: 40, top: 40),
+      child: Row(
+        children: [
+          Icon(
+            Icons.add_box_outlined,
+            size: 30,
+            color: Colors.blue,
+          ),
+          SizedBox(width: 20),
+          Text(
+            'Chức năng',
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
+          ),
+        ],
+      ),
+    );
 
     Widget Infomation = Container(
-      padding: EdgeInsets.only(left: 40, top: 40),
+      padding: EdgeInsets.only(left: 70, top: 40),
       child: Column(
         children: [
           Padding(
@@ -188,6 +207,39 @@ class AcSettingState extends State<AcSetting> {
         ],
       ),
     );
+    Widget Infomation2 = Container(
+      padding: EdgeInsets.only(left: 70, top: 40),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(top: 0),
+            child: Row(
+              children: [
+                Icon(Icons.account_balance_sharp, size: 30, color: Colors.blue),
+                SizedBox(width: 20),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Suggest()));
+                  },
+                  child: Text(
+                    'Đề xuất địa danh',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.black),
+                  ),
+                ),
+              ],
+            ),
+          ),
+         
+        ],
+      ),
+    );
+   
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff33ccff),
@@ -238,12 +290,19 @@ class AcSettingState extends State<AcSetting> {
         child: ListView(
           children: [
             Avatar,
+            Setting2,
+            Divider(
+                color: Colors.black.withOpacity(0.8),
+                indent: 20,
+                endIndent: 20),
+            Infomation2,
             Setting,
             Divider(
                 color: Colors.black.withOpacity(0.8),
                 indent: 20,
                 endIndent: 20),
             Infomation,
+            
           ],
         ),
       ),
