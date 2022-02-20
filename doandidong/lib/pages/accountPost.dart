@@ -3,6 +3,7 @@ import 'package:doandidong/backend/object/post_object.dart';
 import 'package:doandidong/backend/object/user_object.dart';
 import 'package:doandidong/backend/provider/post_provider.dart';
 import 'package:doandidong/backend/provider/user_provider.dart';
+import 'package:doandidong/pages/sites/SitesLike.dart';
 import 'package:doandidong/pages/user/PostShare.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -511,7 +512,7 @@ class AccountPostState extends State<AccountPost> {
                   IconButton(
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => PostShare()));
+                          MaterialPageRoute(builder: (context) => SitesLike()));
                     },
                    icon: Icon(Icons.search),
                   ),

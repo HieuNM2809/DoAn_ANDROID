@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:doandidong/backend/object/hotel_object.dart';
 import 'package:doandidong/backend/object/post_object.dart';
+import 'package:doandidong/backend/object/sitesObjectLike.dart';
 import 'package:doandidong/backend/object/user_object.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
@@ -15,6 +16,11 @@ class UserProvider {
     final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
     return parsed.map<PostObject>((e) => PostObject.fromJson(e)).toList();
   }
+  static List<SitesObjectLike> parseSitesObjectLike(String responseBody) {
+    final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
+    return parsed.map<SitesObjectLike>((e) => SitesObjectLike.fromJson(e)).toList();
+  }
+  
 
   static Future<dynamic> getToken() async {
     /* ==== Lấy token từ Storage ==== */
@@ -108,6 +114,18 @@ class UserProvider {
     };
     final response = await http.get(Uri.parse(url), headers: userHeader);
     return parsePost(response.body);
+  }
+
+    //=========== Ds bai viet User chia se
+   static Future<List<SitesObjectLike>> getSiteLike() async {
+     var id = await getIdLogin();
+    String url = dotenv.env['API_URL_CUS']! + '/api/listDiaDanhLike/$id';
+    Map<String, String> userHeader = {
+      "Content-type": "application/json",
+      "Accept": "application/json"
+    };
+    final response = await http.get(Uri.parse(url), headers: userHeader);
+    return parseSitesObjectLike(response.body);
   }
 
   
