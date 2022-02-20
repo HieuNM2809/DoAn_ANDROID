@@ -1,3 +1,4 @@
 *.lock
 doandidong/pubspec.lock
 .vscode
+doandidong/.env

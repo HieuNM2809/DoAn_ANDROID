@@ -1,17 +1,18 @@
 import 'package:doandidong/backend/object/hotel_object.dart';
 import 'package:doandidong/backend/provider/hotel_provider.dart';
 import 'package:doandidong/layout/footter.dart';
+import 'package:doandidong/pages/DetailSites.dart';
 import 'package:doandidong/pages/detailhotel.dart';
 import 'package:flutter/material.dart';
 
-class ListHotel extends StatefulWidget {
-  const ListHotel({Key? key}) : super(key: key);
+class Ortherhotels extends StatefulWidget {
+  const Ortherhotels({Key? key}) : super(key: key);
 
   @override
-  State<ListHotel> createState() => ListHotelState();
+  State<Ortherhotels> createState() => OrtherhotelsState();
 }
 
-class ListHotelState extends State<ListHotel> {
+class OrtherhotelsState extends State<Ortherhotels> {
   List<HotelObject> Hotel = [];
   void lshotel() async {
     final data = await HotelProvider.getAllHotel();
@@ -139,11 +140,12 @@ class ListHotelState extends State<ListHotel> {
       appBar: AppBar(
         backgroundColor: Color(0xff33ccff),
         leading: IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => FootterPage()));
-            },
-            icon: Icon(Icons.arrow_back_sharp),),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => Hoteldetail()));
+          },
+          icon: Icon(Icons.arrow_back_sharp),
+        ),
         title: Stack(
           children: [
             Container(

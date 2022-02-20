@@ -16,7 +16,7 @@ class _SpinKitScreenState extends State<LoadingPage> {
     setState(() {});
     Timer(Duration(seconds: 1), () {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => FootterPage()));
+          context, MaterialPageRoute(builder: (context) => LoginPage()));
     });
   }
 

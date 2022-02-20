@@ -97,6 +97,7 @@ class LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
                   child: TextFormField(
                     controller: txtPassword,
+                    obscureText: true,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
@@ -127,7 +128,12 @@ class LoginPageState extends State<LoginPage> {
                 Container(
                   padding: EdgeInsets.fromLTRB(100, 0, 80, 0),
                   child: ElevatedButton(
-                    onPressed: () => dangNhap(),
+                    onPressed: () {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => FootterPage()),
+                          (route) => false);
+                    },
                     child: Text(
                       'Đăng nhập ',
                       style: TextStyle(

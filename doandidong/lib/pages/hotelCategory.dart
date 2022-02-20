@@ -270,11 +270,10 @@ class CartHotel extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: Image.network(
-                      'http://dulich.local:81/upload/users/2022_01_07_02_29_50_Untitled-2.png',
-                      width: 300,
-                      height: 200,
-                      fit: BoxFit.fill
-                    ),
+                        'http://dulich.local:81/upload/users/2022_01_07_02_29_50_Untitled-2.png',
+                        width: 300,
+                        height: 200,
+                        fit: BoxFit.fill),
                     // Image.asset(
                     //   'images/image_1.jpg',
                     //   fit: BoxFit.fill,

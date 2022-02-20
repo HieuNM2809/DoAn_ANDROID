@@ -140,7 +140,6 @@ class _AddState extends State<Add> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff33ccff),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu_open)),
         title: Stack(
           children: [
             Container(

@@ -1,28 +1,28 @@
-import 'package:doandidong/backend/object/hotel_object.dart';
-import 'package:doandidong/backend/provider/hotel_provider.dart';
+import 'package:doandidong/backend/object/restaurant_object.dart';
+import 'package:doandidong/backend/provider/restaurant_provider.dart';
 import 'package:doandidong/layout/footter.dart';
-import 'package:doandidong/pages/detailhotel.dart';
+import 'package:doandidong/pages/detailrestaurant.dart';
 import 'package:flutter/material.dart';
 
-class ListHotel extends StatefulWidget {
-  const ListHotel({Key? key}) : super(key: key);
+class OrtherRestautant extends StatefulWidget {
+  const OrtherRestautant({Key? key}) : super(key: key);
 
   @override
-  State<ListHotel> createState() => ListHotelState();
+  State<OrtherRestautant> createState() => OrtherRestautantState();
 }
 
-class ListHotelState extends State<ListHotel> {
-  List<HotelObject> Hotel = [];
-  void lshotel() async {
-    final data = await HotelProvider.getAllHotel();
+class OrtherRestautantState extends State<OrtherRestautant> {
+  List<RestaurantObject> _Restaurant = [];
+  void lsRes() async {
+    final data_Res = await RestaurantProvider.getAllRestaurant();
     setState(() {});
-    Hotel = data;
+    _Restaurant = data_Res;
   }
 
   @override
   void initState() {
     super.initState();
-    lshotel();
+    lsRes();
   }
 
   Widget _ChoseRegion = Container(
@@ -111,8 +111,8 @@ class ListHotelState extends State<ListHotel> {
       ],
     ),
   );
-  Widget AllSite = Container(
-    padding: EdgeInsets.only(top: 20, left: 20, bottom: 20),
+  Widget _ChoseRes = Container(
+    padding: EdgeInsets.only(top: 20, left: 7),
     child: Column(
       children: [
         Row(
@@ -120,7 +120,7 @@ class ListHotelState extends State<ListHotel> {
           children: [
             Container(
               child: Text(
-                '12 khách sạn',
+                '10 Nhà hàng',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -143,7 +143,7 @@ class ListHotelState extends State<ListHotel> {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => FootterPage()));
             },
-            icon: Icon(Icons.arrow_back_sharp),),
+            icon: Icon(Icons.arrow_back_sharp)),
         title: Stack(
           children: [
             Container(
@@ -185,10 +185,10 @@ class ListHotelState extends State<ListHotel> {
         child: Column(
           children: [
             _ChoseRegion,
-            AllSite,
+            _ChoseRes,
             Expanded(
               child: ListView.builder(
-                itemCount: Hotel.length,
+                itemCount: _Restaurant.length,
                 itemBuilder: (context, index) => Container(
                   margin: EdgeInsets.all(5),
                   child: Card(
@@ -198,14 +198,13 @@ class ListHotelState extends State<ListHotel> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Hoteldetail()));
+                                builder: (context) => Detailrestaurant()));
                       },
                       child: Container(
                         margin: EdgeInsets.all(5),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Load hình ảnh
                             Container(
                               padding: EdgeInsets.only(left: 5, right: 5),
                               width: 100,
@@ -214,17 +213,15 @@ class ListHotelState extends State<ListHotel> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
                                 child: Image.asset(
-                                  'images/khachsan.png',
+                                  'images/La_Sirena.jpg',
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
-
                             SizedBox(
                               width: 4,
                               height: 4,
                             ),
-                            // Tên nơi lưu trú
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -232,7 +229,7 @@ class ListHotelState extends State<ListHotel> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        Hotel[index].name,
+                                        _Restaurant[index].name_Res,
                                         softWrap: true,
                                         style: TextStyle(
                                           color: Colors.blue,
@@ -251,8 +248,9 @@ class ListHotelState extends State<ListHotel> {
                                   height: 4,
                                 ),
                                 Container(
+                                  padding: EdgeInsets.only(top: 5),
                                   child: Text(
-                                    'Khách sạn này giá ok, xanh sạch đẹp',
+                                    'Nhà hàng này rất tuyệt vời',
                                     overflow: TextOverflow.ellipsis,
                                     softWrap: true,
                                     style: TextStyle(
@@ -261,6 +259,7 @@ class ListHotelState extends State<ListHotel> {
                                   ),
                                 ),
                                 Container(
+                                  padding: EdgeInsets.only(top: 15),
                                   child: Row(
                                     children: [
                                       Icon(
@@ -268,7 +267,7 @@ class ListHotelState extends State<ListHotel> {
                                         color: Colors.red,
                                       ),
                                       Text(
-                                        Hotel[index].address,
+                                        _Restaurant[index].address,
                                         softWrap: true,
                                         style: TextStyle(
                                             color: Colors.black,

@@ -1,3 +1,7 @@
+import 'package:doandidong/backend/object/hotel_object.dart';
+import 'package:doandidong/backend/provider/hotel_provider.dart';
+import 'package:doandidong/pages/listshotel.dart';
+import 'package:doandidong/pages/ortherhotel.dart';
 import 'package:flutter/material.dart';
 
 class Hoteldetail extends StatefulWidget {
@@ -8,15 +12,43 @@ class Hoteldetail extends StatefulWidget {
 }
 
 class _HoteldetailState extends State<Hoteldetail> {
+  // List<HotelObject> DHotel = [];
+  // void dthotel() async {
+  //   final data = await HotelProvider.getAllHotel();
+  //   setState(() {});
+  //   DHotel = data;
+  // }
+
+  // @override
+  // void initStates() {
+  //   super.initState();
+  //   dthotel();
+  // }
+
   @override
   Widget build(BuildContext context) {
     Widget images = Container(
-      child: ClipRRect(
-        borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
-        child: Image.asset(
-          'images/khachsan.png',
-        ),
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30)),
+            child: Image.asset(
+              'images/khachsan.png',
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ListHotel()));
+            },
+            icon: Icon(
+              Icons.arrow_back_sharp,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
     );
     Widget TextKS = Container(
@@ -26,161 +58,64 @@ class _HoteldetailState extends State<Hoteldetail> {
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );
-    Widget Mota = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: EdgeInsets.only(top: 20, left: 20),
-          child: Text(
-            'Mô tả chi tiết',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.only(top: 10, left: 20, right: 20),
-          child: Text(
-            'Dành cho những du khách muốn du lịch thoải mái cùng ngân sách tiết kiệm, Khách Sạn Hoàng Khương sẽ là lựa chọn lưu trú hoàn hảo, nơi cung cấp các tiện nghi chất lượng và dịch vụ tuyệt vời',
-            style: TextStyle(fontSize: 14),
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
-          child: ClipRRect(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30)),
-            child: Image.asset('images/VTKS.PNG'),
-          ),
-        ),
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.only(left: 20, bottom: 10),
-                child: Text(
-                  'Các khách sạn tương tự',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          child: Image.asset(
-                            'images/khachsan.png',
-                            width: 120,
-                            height: 80,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 160,
-                        height: 80,
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: Text(
-                          'Khách sạn Hoàng Khương 2',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.zero,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          child: Image.asset(
-                            'images/khachsan.png',
-                            width: 120,
-                            height: 80,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 160,
-                        height: 80,
-                        padding: EdgeInsets.zero,
-                        child: Text(
-                          'Khách sạn Hoàng Khương 3',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          child: Image.asset(
-                            'images/khachsan.png',
-                            width: 120,
-                            height: 80,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 160,
-                        height: 80,
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: Text(
-                          'Khách sạn Hoàng Khương 4',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Container(
-                child: Row(
-                  children: [
-                    IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
-                    Container(
-                      padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Đặt ngay ',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.black),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          primary: Color(0xff33ccff),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 50, vertical: 10),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+    Widget Mota = Container(
+      padding: EdgeInsets.only(left: 20, top: 10),
+      child: Text(
+        'Mô tả chi tiết',
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
     );
+    Widget Map = Container(
+      padding: EdgeInsets.only(left: 20, top: 10, right: 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+        ),
+        child: Image.asset('images/VTKS.PNG'),
+      ),
+    );
+
+    Widget KSS = Container(
+      padding: EdgeInsets.fromLTRB(100, 10, 80, 20),
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Ortherhotels()));
+        },
+        child: Text(
+          'Các khách sạn khác',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            primary: Color(0xff33ccff),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20)),
+      ),
+    );
+
     return Scaffold(
       body: Center(
         child: ListView(
           children: [
             images,
             TextKS,
+            Divider(
+                color: Colors.black.withOpacity(0.8),
+                indent: 20,
+                endIndent: 20),
             Mota,
+            Container(
+              padding: EdgeInsets.only(left: 20, top: 10, right: 10),
+              child: Text(
+                'abc Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting.',
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            Map,
+            KSS,
           ],
         ),
       ),

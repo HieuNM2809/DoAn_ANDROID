@@ -1,132 +1,147 @@
+import 'package:doandidong/pages/ListSites.dart';
+import 'package:doandidong/pages/ortherhotel.dart';
+import 'package:doandidong/pages/ortherrestaurant.dart';
+import 'package:doandidong/pages/otherKS.dart';
+import 'package:doandidong/pages/otherR.dart';
 import 'package:flutter/material.dart';
 
 class DetailSites extends StatefulWidget {
   const DetailSites({Key? key}) : super(key: key);
 
   @override
-  State<DetailSites> createState() => _DetailSitesState();
+  DetailSitesState createState() => DetailSitesState();
 }
 
-class _DetailSitesState extends State<DetailSites> {
-  Widget _Image = Stack(
-    fit: StackFit.passthrough,
-    children: [
-      Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Color(0xff33CCFF),
-            width: 3.5,
-          ),
-        ),
-        child: Image.asset(
-          'images/Vung_Tau.jpg',
-          fit: BoxFit.fill,
-          height: 250,
-          width: 200,
-        ),
-      ),
-      Container(
-        padding: EdgeInsets.only(top: 260, left: 7),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              '100 Chia sẻ',
-              style: TextStyle(fontSize: 13, color: Colors.blueGrey),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: Text(
-                'Trở về Vùng',
-                style: TextStyle(fontSize: 14, color: Colors.green),
-              ),
-            ),
-          ],
-        ),
-      ),
-      Container(
-        padding: EdgeInsets.only(top: 290, left: 7),
-        child: Text(
-          'Vũng Tàu',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      Container(
-        padding: EdgeInsets.only(top: 320, left: 7),
-        child: Text(
-          'Một địa danh biển tuyệt đẹp nằm ở Tỉnh BR-VT.',
-          style: TextStyle(),
-        ),
-      ),
-      Container(
-        padding: EdgeInsets.only(top: 345, left: 7),
-        child: Text(
-          'Bản đồ',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-      ),
-      Container(
-        padding: EdgeInsets.only(top: 370, left: 7),
-        child: Image.asset(
-          'images/Vung_Tau_Location.png',
-          fit: BoxFit.fill,
-          width: 400,
-          height: 200,
-        ),
-      ),
-    ],
-  );
+class DetailSitesState extends State<DetailSites> {
+  // List<HotelObject> DHotel = [];
+  // void dthotel() async {
+  //   final data = await HotelProvider.getAllHotel();
+  //   setState(() {});
+  //   DHotel = data;
+  // }
+
+  // @override
+  // void initStates() {
+  //   super.initState();
+  //   dthotel();
+  // }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff33ccff),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu_open)),
-        title: Stack(
-          children: [
-            Container(
-              alignment: Alignment.center,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Du',
-                    style: TextStyle(
-                        color: Colors.orange, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    ' lịch',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                  Image.asset('images/logo_appbar.jpg'),
-                ],
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          Container(
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.search),
+    Widget images = Container(
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30)),
+            child: Image.asset(
+              'images/Vung_Tau.jpg',
             ),
           ),
-          Container(
-            padding: EdgeInsets.only(right: 10),
-            child:
-                IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
+          IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ListSites()));
+            },
+            icon: Icon(
+              Icons.arrow_back_sharp,
+              color: Colors.white,
+            ),
           ),
         ],
       ),
+    );
+    Widget TextDD = Container(
+      padding: EdgeInsets.only(left: 20, top: 10),
+      child: Text(
+        'Biển Vũng Tàu',
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+    );
+    Widget Mota = Container(
+      padding: EdgeInsets.only(left: 20, top: 10),
+      child: Text(
+        'Mô tả chi tiết',
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+    );
+    Widget Map = Container(
+      padding: EdgeInsets.only(left: 20, top: 10, right: 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+        ),
+        child: Image.asset('images/Vung_Tau_Location.png'),
+      ),
+    );
+    Widget Button = Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          padding: EdgeInsets.only(left: 20, top: 10, bottom: 10),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => OrtherKS()));
+            },
+            child: Text(
+              'Các khách sạn gần đây',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            ),
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                primary: Color(0xff33ccff),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20)),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 10),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => OrtherR()));
+            },
+            child: Text(
+              'Các quán ăn gần đây',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            ),
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                primary: Color(0xff33ccff),
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20)),
+          ),
+        ),
+      ],
+    );
+
+    return Scaffold(
       body: Center(
         child: ListView(
           children: [
-            // slider(),
-            _Image,
+            images,
+            TextDD,
+            Divider(
+                color: Colors.black.withOpacity(0.8),
+                indent: 20,
+                endIndent: 20),
+            Mota,
+            Container(
+              padding: EdgeInsets.only(left: 20, top: 10, right: 10),
+              child: Text(
+                'abc Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting.',
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            Map,
+            Button,
           ],
         ),
       ),

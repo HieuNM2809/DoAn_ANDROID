@@ -43,7 +43,7 @@ class FootterPageState extends State<FootterPage> {
               backgroundColor: Colors.white),
           BottomNavigationBarItem(
               icon: Icon(Icons.category, color: Colors.grey),
-              title: Text('Category'),
+              title: Text('Suggest'),
               backgroundColor: Colors.white),
           BottomNavigationBarItem(
               icon: Icon(Icons.add, color: Colors.grey),

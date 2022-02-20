@@ -1,5 +1,7 @@
 import 'package:doandidong/backend/object/restaurant_object.dart';
 import 'package:doandidong/backend/provider/restaurant_provider.dart';
+import 'package:doandidong/layout/footter.dart';
+import 'package:doandidong/pages/detailrestaurant.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantCategory extends StatefulWidget {
@@ -23,6 +25,92 @@ class RestaurantCategoryState extends State<RestaurantCategory> {
     lsRes();
   }
 
+  Widget _ChoseRegion = Container(
+    padding: EdgeInsets.only(top: 15),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          padding: EdgeInsets.only(left: 7),
+          child: TextButton(
+            onPressed: () {},
+            child: Text(
+              'Tất cả',
+              style: TextStyle(fontSize: 16, color: Colors.white),
+            ),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(
+                Color(0xff33CCFF),
+              ),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Container(
+          child: TextButton(
+            onPressed: () {},
+            child: Text(
+              'Miền Bắc',
+              style: TextStyle(fontSize: 16, color: Colors.white),
+            ),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(
+                Color(0xff33CCFF),
+              ),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Container(
+          child: TextButton(
+            onPressed: () {},
+            child: Text(
+              'Miền Trung',
+              style: TextStyle(fontSize: 16, color: Colors.white),
+            ),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(
+                Color(0xff33CCFF),
+              ),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(right: 7),
+          child: TextButton(
+            onPressed: () {},
+            child: Text(
+              'Miền Nam',
+              style: TextStyle(fontSize: 16, color: Colors.white),
+            ),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(
+                Color(0xff33CCFF),
+              ),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
   Widget _ChoseRes = Container(
     padding: EdgeInsets.only(top: 20, left: 7),
     child: Column(
@@ -39,32 +127,6 @@ class RestaurantCategoryState extends State<RestaurantCategory> {
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(right: 7),
-              child: Row(
-                children: [
-                  Text(
-                    'Sắp xếp:',
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Row(children: [
-                      Text(
-                        'Hot',
-                        style: TextStyle(fontSize: 13, color: Colors.black),
-                      ),
-                      Icon(
-                        Icons.arrow_drop_down,
-                      ),
-                    ]),
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ],
@@ -76,7 +138,12 @@ class RestaurantCategoryState extends State<RestaurantCategory> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff33ccff),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu_open)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => FootterPage()));
+            },
+            icon: Icon(Icons.arrow_back_sharp)),
         title: Stack(
           children: [
             Container(
@@ -117,6 +184,7 @@ class RestaurantCategoryState extends State<RestaurantCategory> {
       body: Center(
         child: Column(
           children: [
+            _ChoseRegion,
             _ChoseRes,
             Expanded(
               child: ListView.builder(
@@ -126,7 +194,12 @@ class RestaurantCategoryState extends State<RestaurantCategory> {
                   child: Card(
                     child: InkWell(
                       splashColor: Colors.blue.withAlpha(30),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Detailrestaurant()));
+                      },
                       child: Container(
                         margin: EdgeInsets.all(5),
                         child: Row(

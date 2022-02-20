@@ -191,7 +191,12 @@ class AcSettingState extends State<AcSetting> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff33ccff),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu_open)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => FootterPage()));
+            },
+            icon: Icon(Icons.arrow_back_sharp)),
         title: Stack(
           children: [
             Container(

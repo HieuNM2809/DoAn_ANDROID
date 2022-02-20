@@ -1,4 +1,6 @@
 import 'package:doandidong/pages/ListSites.dart';
+import 'package:doandidong/pages/RestaurantCategory.dart';
+import 'package:doandidong/pages/listshotel.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,141 +13,161 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  Widget DanhMuc = Center(
-    child: Column(
-      children: [
-        Container(
-          padding: EdgeInsets.only(top: 10, left: 10, bottom: 10),
-          alignment: Alignment.centerLeft,
-          child: Text(
-            'Danh mục vùng',
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  width: 120,
-                  height: 80,
-                  padding: EdgeInsets.only(left: 10),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    child: Image.asset(
-                      'images/mienbac.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 30, left: 20),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Miền bắc',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20))),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Stack(
-              children: [
-                Container(
-                  width: 120,
-                  height: 80,
-                  padding: EdgeInsets.only(left: 10),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    child: Image.asset(
-                      'images/mientrung.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 30, left: 20),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Miền trung',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20))),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Stack(
-              children: [
-                Container(
-                  width: 120,
-                  height: 80,
-                  padding: EdgeInsets.only(right: 10),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    child: Image.asset(
-                      'images/miennam.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 30, left: 20),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Miền nam',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.white),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20))),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
-
   @override
   Widget build(BuildContext context) {
     var ImageList;
+    Widget DanhMuc = Center(
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: 10, left: 10, bottom: 10),
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Danh mục vùng',
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    width: 120,
+                    height: 80,
+                    padding: EdgeInsets.only(left: 10),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: Image.asset(
+                        'images/mienbac.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 30, left: 20),
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListSites()));
+                      },
+                      child: Text(
+                        'Miền bắc',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20))),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Stack(
+                children: [
+                  Container(
+                    width: 120,
+                    height: 80,
+                    padding: EdgeInsets.only(left: 10),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: Image.asset(
+                        'images/mientrung.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 30, left: 20),
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListSites()));
+                      },
+                      child: Text(
+                        'Miền trung',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20))),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Stack(
+                children: [
+                  Container(
+                    width: 120,
+                    height: 80,
+                    padding: EdgeInsets.only(right: 10),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      child: Image.asset(
+                        'images/miennam.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top: 30, left: 20),
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListSites()));
+                      },
+                      child: Text(
+                        'Miền nam',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20))),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff33ccff),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu_open)),
         title: Stack(
           children: [
             Container(
@@ -210,6 +232,7 @@ class HomePageState extends State<HomePage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
                             child: InkWell(
+                              splashColor: Colors.blue.withAlpha(30),
                               onTap: () {
                                 Navigator.push(
                                     context,
@@ -248,11 +271,12 @@ class HomePageState extends State<HomePage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
                             child: InkWell(
+                              splashColor: Colors.blue.withAlpha(30),
                               onTap: () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ListSites()));
+                                        builder: (context) => ListHotel()));
                               },
                               child: Image.asset(
                                 'images/khachsan.png',
@@ -286,11 +310,13 @@ class HomePageState extends State<HomePage> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
                             child: InkWell(
+                              splashColor: Colors.blue.withAlpha(30),
                               onTap: () {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ListSites()));
+                                        builder: (context) =>
+                                            RestaurantCategory()));
                               },
                               child: Image.asset(
                                 'images/quanan.png',

@@ -1,3 +1,5 @@
+import 'package:doandidong/pages/RestaurantCategory.dart';
+import 'package:doandidong/pages/ortherrestaurant.dart';
 import 'package:flutter/material.dart';
 
 class Detailrestaurant extends StatefulWidget {
@@ -11,176 +13,83 @@ class _DetailrestaurantState extends State<Detailrestaurant> {
   @override
   Widget build(BuildContext context) {
     Widget images = Container(
-      child: ClipRRect(
-        borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
-        child: Image.asset(
-          'images/Nhahang.jpg',
-        ),
-      ),
-    );
-    Widget TextKS = Container(
-      padding: EdgeInsets.only(left: 20, top: 10),
-      child: Text(
-        'Bún đậu mắm tôm ',
-        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-      ),
-    );
-    Widget Mota = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: EdgeInsets.only(top: 20, left: 20),
-          child: Text(
-            'Mô tả chi tiết',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.only(top: 10, left: 20),
-          child: Text(
-            'Bạn muốn ăn bún đậu với một phong cách phục vụ chuyên nghiệp, dịch vụ ân cần, đồ uống đa dạng...',
-            style: TextStyle(fontSize: 14),
-          ),
-        ),
-        Container(
-          padding: EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 20),
-          child: ClipRRect(
+      child: Stack(
+        children: [
+          ClipRRect(
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(30),
                 bottomRight: Radius.circular(30)),
-            child: Image.asset('images/VTNH.png'),
+            child: Image.asset(
+              'images/Nhahang.jpg',
+            ),
           ),
-        ),
-        Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.only(left: 20, bottom: 10),
-                child: Text(
-                  'Các món ăn',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          child: Image.asset(
-                            'images/Nhahang.jpg',
-                            width: 120,
-                            height: 80,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 160,
-                        height: 80,
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: Text(
-                          'Bún đậu mắm tôm 2',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.zero,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          child: Image.asset(
-                            'images/Nhahang.jpg',
-                            width: 120,
-                            height: 80,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 160,
-                        height: 80,
-                        padding: EdgeInsets.zero,
-                        child: Text(
-                          'Bún đậu mắm tôm 3',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          child: Image.asset(
-                            'images/Nhahang.jpg',
-                            width: 120,
-                            height: 80,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 160,
-                        height: 80,
-                        padding: EdgeInsets.only(left: 20, right: 20),
-                        child: Text(
-                          'Bún đậu mắm tôm 4',
-                          style: TextStyle(fontSize: 14),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Container(
-                child: Row(
-                  children: [
-                    IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
-                    Container(
-                      padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Đặt ngay ',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.black),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          primary: Color(0xff33ccff),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 50, vertical: 10),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => RestaurantCategory()));
+            },
+            icon: Icon(
+              Icons.arrow_back_sharp,
+              color: Colors.white,
+            ),
           ),
+        ],
+      ),
+    );
+    Widget Mota = Container(
+      padding: EdgeInsets.only(left: 20, top: 10),
+      child: Text(
+        'Mô tả chi tiết',
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+    );
+    Widget Map = Container(
+      padding: EdgeInsets.only(left: 20, top: 10, right: 10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
         ),
-      ],
+        child: Image.asset('images/VTNH.png'),
+      ),
+    );
+
+    Widget NHK = Container(
+      padding: EdgeInsets.fromLTRB(100, 10, 80, 20),
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => OrtherRestautant()));
+        },
+        child: Text(
+          'Các quán ăn khác',
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+        style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            primary: Color(0xff33ccff),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20)),
+      ),
     );
     return Scaffold(
       body: Center(
         child: ListView(
           children: [
             images,
-            TextKS,
             Mota,
+            Container(
+              padding: EdgeInsets.only(left: 20, top: 10, right: 10),
+              child: Text(
+                'abc Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting.',
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            Map,
+            NHK,
           ],
         ),
       ),

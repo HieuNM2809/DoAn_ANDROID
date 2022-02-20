@@ -1,5 +1,7 @@
 import 'package:doandidong/backend/object/sites_object.dart';
 import 'package:doandidong/backend/provider/sites_provider.dart';
+import 'package:doandidong/layout/footter.dart';
+import 'package:doandidong/pages/DetailSites.dart';
 import 'package:flutter/material.dart';
 
 class ListSites extends StatefulWidget {
@@ -113,32 +115,6 @@ class _ListSitesState extends State<ListSites> {
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(right: 7),
-              child: Row(
-                children: [
-                  Text(
-                    'Sắp xếp:',
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Row(children: [
-                      Text(
-                        'Hot',
-                        style: TextStyle(fontSize: 13, color: Colors.black),
-                      ),
-                      Icon(
-                        Icons.arrow_drop_down,
-                      ),
-                    ]),
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ],
@@ -163,7 +139,12 @@ class _ListSitesState extends State<ListSites> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff33ccff),
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu_open)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => FootterPage()));
+            },
+            icon: Icon(Icons.arrow_back_sharp)),
         title: Stack(
           children: [
             Container(
@@ -214,7 +195,12 @@ class _ListSitesState extends State<ListSites> {
                   child: Card(
                     child: InkWell(
                       splashColor: Colors.blue.withAlpha(30),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailSites()));
+                      },
                       child: Container(
                         margin: EdgeInsets.all(5),
                         child: Row(
