@@ -1,14 +1,48 @@
+import 'dart:io';
+
+import 'package:doandidong/backend/object/post_object.dart';
 import 'package:flutter/material.dart';
 import 'package:doandidong/layout/footter.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Add extends StatefulWidget {
-  const Add({Key? key}) : super(key: key);
+  final PostObject? add;
+  final String? title;
+
+  Add({this.add, this.title});
 
   @override
   _AddState createState() => _AddState();
 }
 
 class _AddState extends State<Add> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _txtControllerBody = TextEditingController();
+  File? img;
+  Future pickImage(ImageSource source) async {
+    try {
+      final img = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (img == null) return;
+
+      final imagesTem = File(img.path);
+      setState(() => this.img = imagesTem);
+    } on PlatformException catch (e) {
+      print('Lỗi: $e');
+    }
+  }
+
+  // void createadd() async {
+  //   String? image = imagesTem == null ? null : getStringImage(_imageTem);
+  //   ApiReponse reponse = await createadd(_txtControllerBody.text, image);
+  //   if (response.error == null) {
+  //     Navigator.of(context).pop();
+  //   }
+  //   else if (response.error == unauthorized){
+  //     logout().then((values))
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     Widget Login = Container(
@@ -58,41 +92,46 @@ class _AddState extends State<Add> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 20, top: 20),
+                  padding: EdgeInsets.only(left: 20, top: 30, bottom: 20),
                   child: TextField(
                     decoration: InputDecoration.collapsed(
-                        hintText: 'Bạn đã đi đến đâu rồi?',
-                        hintStyle: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black)),
+                      hintText: 'Bạn đã đi đến đâu rồi?',
+                      hintStyle: TextStyle(fontSize: 18, color: Colors.grey),
+                    ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.only(left: 20, top: 50),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.image,
-                          color: Colors.green,
-                          size: 40,
+                img != null
+                    ? Image.file(
+                        img!,
+                        width: 200,
+                        height: 250,
+                        fit: BoxFit.cover,
+                      )
+                    : Container(
+                        padding: EdgeInsets.only(left: 20, top: 50),
+                        child: Row(
+                          children: [
+                            IconButton(
+                              onPressed: () => pickImage(ImageSource.gallery),
+                              icon: Icon(
+                                Icons.image,
+                                color: Colors.green,
+                                size: 40,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.insert_emoticon,
+                                  color: Colors.black, size: 40),
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.location_on,
+                                  color: Colors.red, size: 40),
+                            ),
+                          ],
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.insert_emoticon,
-                            color: Colors.black, size: 40),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.location_on,
-                            color: Colors.red, size: 40),
-                      ),
-                    ],
-                  ),
-                ),
                 Container(
                   padding: EdgeInsets.only(top: 30),
                   child: ElevatedButton(

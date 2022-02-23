@@ -1,8 +1,10 @@
 import 'package:doandidong/backend/object/hotel_object.dart';
 import 'package:doandidong/backend/provider/hotel_provider.dart';
+
 import 'package:doandidong/layout/footter.dart';
 import 'package:doandidong/pages/detailhotel.dart';
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ListHotel extends StatefulWidget {
   const ListHotel({Key? key}) : super(key: key);
@@ -12,6 +14,7 @@ class ListHotel extends StatefulWidget {
 }
 
 class ListHotelState extends State<ListHotel> {
+  String url = "http://192.168.1.5/upload/hotel/";
   List<HotelObject> Hotel = [];
   void lshotel() async {
     final data = await HotelProvider.getAllHotel();
@@ -139,11 +142,12 @@ class ListHotelState extends State<ListHotel> {
       appBar: AppBar(
         backgroundColor: Color(0xff33ccff),
         leading: IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => FootterPage()));
-            },
-            icon: Icon(Icons.arrow_back_sharp),),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => FootterPage()));
+          },
+          icon: Icon(Icons.arrow_back_sharp),
+        ),
         title: Stack(
           children: [
             Container(
@@ -213,8 +217,8 @@ class ListHotelState extends State<ListHotel> {
                               child: ClipRRect(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
-                                child: Image.asset(
-                                  'images/khachsan.png',
+                                child: Image.network(
+                                  "http://192.168.1.5/DoAn_PHP_NC/DoAn_Laravel/public/upload/hotel/${Hotel[index].image}",
                                   fit: BoxFit.cover,
                                 ),
                               ),

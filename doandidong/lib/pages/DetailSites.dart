@@ -55,14 +55,21 @@ class DetailSitesState extends State<DetailSites> {
     Widget TextDD = Container(
       padding: EdgeInsets.only(left: 20, top: 10),
       child: Text(
-        'Biển Vũng Tàu',
+        'Biển Vung Tàu',
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );
     Widget Mota = Container(
       padding: EdgeInsets.only(left: 20, top: 10),
       child: Text(
-        'Mô tả chi tiết',
+        'Mô tả',
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
+    );
+    Widget DC = Container(
+      padding: EdgeInsets.only(left: 20, top: 10),
+      child: Text(
+        'Ðịa chỉ',
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );
@@ -70,6 +77,8 @@ class DetailSitesState extends State<DetailSites> {
       padding: EdgeInsets.only(left: 20, top: 10, right: 10),
       child: ClipRRect(
         borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
           bottomLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),
         ),
@@ -103,8 +112,8 @@ class DetailSitesState extends State<DetailSites> {
           padding: EdgeInsets.only(left: 30, top: 10, right: 20, bottom: 10),
           child: ElevatedButton(
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => OrtherR()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => OrtherR()));
             },
             child: Text(
               'Các quán ăn gần đây',
@@ -137,6 +146,14 @@ class DetailSitesState extends State<DetailSites> {
               padding: EdgeInsets.only(left: 20, top: 10, right: 10),
               child: Text(
                 'abc Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting.',
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            DC,
+            Container(
+              padding: EdgeInsets.only(left: 20, top: 10, right: 10),
+              child: Text(
+                'Vũng Tàu',
                 style: TextStyle(fontSize: 16),
               ),
             ),
