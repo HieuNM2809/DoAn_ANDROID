@@ -15,7 +15,7 @@ class ListHotel extends StatefulWidget {
 }
 
 class ListHotelState extends State<ListHotel> {
-  String url = "http://192.168.1.5/upload/hotel/";
+  String url = "http://10.32.0.59:80/upload/hotel/";
   List<HotelObject> Hotel = [];
   void lshotel() async {
     final data = await HotelProvider.getAllHotel();
@@ -226,7 +226,7 @@ class ListHotelState extends State<ListHotel> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
                                 child: Image.network(
-                                  "http://192.168.1.5/DoAn_PHP_NC/DoAn_Laravel/public/upload/hotel/${Hotel[index].image}",
+                                  "http://10.32.0.59:80/DoAn_PHP_NC/DoAn_Laravel/public/upload/hotel/${Hotel[index].image}",
                                   fit: BoxFit.cover,
                                 ),
                               ),

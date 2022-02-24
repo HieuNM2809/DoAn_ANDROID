@@ -2,6 +2,7 @@ import 'package:doandidong/pages/ListSites.dart';
 import 'package:doandidong/pages/RestaurantCategory.dart';
 import 'package:doandidong/pages/listshotel.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -13,6 +14,13 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  int currentPos = 0;
+  List<String> ListPaths = [
+    "images/bmt.png",
+    "images/ganhdadia.png",
+    "images/thac.png",
+    "images/Sapa.jpg",
+  ];
   @override
   Widget build(BuildContext context) {
     var ImageList;
