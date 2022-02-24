@@ -1,5 +1,6 @@
 import 'package:doandidong/backend/object/hotel_object.dart';
 import 'package:doandidong/backend/provider/hotel_provider.dart';
+import 'package:doandidong/pages/Search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -196,7 +197,14 @@ class _HotelCategoryState extends State<HotelCategory> {
         actions: [
           Container(
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Search(),
+                  ),
+                );
+              },
               icon: Icon(Icons.search),
             ),
           ),

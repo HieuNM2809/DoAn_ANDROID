@@ -2,6 +2,7 @@ import 'package:doandidong/backend/object/restaurant_object.dart';
 import 'package:doandidong/backend/provider/restaurant_provider.dart';
 import 'package:doandidong/layout/footter.dart';
 import 'package:doandidong/pages/DetailSites.dart';
+import 'package:doandidong/pages/Search.dart';
 import 'package:doandidong/pages/detailrestaurant.dart';
 import 'package:flutter/material.dart';
 
@@ -171,7 +172,14 @@ class OrtherRState extends State<OrtherR> {
         actions: [
           Container(
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Search(),
+                  ),
+                );
+              },
               icon: Icon(Icons.search),
             ),
           ),

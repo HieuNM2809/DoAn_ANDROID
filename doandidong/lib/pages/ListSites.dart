@@ -2,11 +2,10 @@ import 'package:doandidong/backend/object/sites_object.dart';
 import 'package:doandidong/backend/provider/sites_provider.dart';
 import 'package:doandidong/layout/footter.dart';
 import 'package:doandidong/pages/DetailSites.dart';
+import 'package:doandidong/pages/Search.dart';
 import 'package:flutter/material.dart';
 
 class ListSites extends StatefulWidget {
-  const ListSites({Key? key}) : super(key: key);
-
   @override
   State<ListSites> createState() => _ListSitesState();
 }
@@ -171,7 +170,14 @@ class _ListSitesState extends State<ListSites> {
         actions: [
           Container(
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Search(),
+                  ),
+                );
+              },
               icon: Icon(Icons.search),
             ),
           ),

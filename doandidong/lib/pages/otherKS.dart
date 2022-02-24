@@ -2,6 +2,7 @@ import 'package:doandidong/backend/object/hotel_object.dart';
 import 'package:doandidong/backend/provider/hotel_provider.dart';
 import 'package:doandidong/layout/footter.dart';
 import 'package:doandidong/pages/DetailSites.dart';
+import 'package:doandidong/pages/Search.dart';
 import 'package:doandidong/pages/detailhotel.dart';
 import 'package:flutter/material.dart';
 
@@ -172,7 +173,14 @@ class OrtherKSState extends State<OrtherKS> {
         actions: [
           Container(
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Search(),
+                  ),
+                );
+              },
               icon: Icon(Icons.search),
             ),
           ),

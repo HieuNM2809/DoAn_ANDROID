@@ -17,7 +17,7 @@ class SitesObject {
       : id = r['id'],
         name = r['name'],
         description = r['description'],
-        hot = r['hot'],
+        hot = r['status'],
         countshare = r['countshare'],
         id_types_sites = r['id_types_sites'];
 }

@@ -1,4 +1,5 @@
 import 'package:doandidong/pages/ListSites.dart';
+import 'package:doandidong/pages/Search.dart';
 import 'package:flutter/material.dart';
 
 class CategoryUI extends StatefulWidget {
@@ -246,7 +247,14 @@ class _CategoryUIState extends State<CategoryUI> {
         actions: [
           Container(
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Search(),
+                  ),
+                );
+              },
               icon: Icon(Icons.search),
             ),
           ),
