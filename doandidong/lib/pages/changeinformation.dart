@@ -97,20 +97,20 @@ class _ChangeinformationState extends State<Changeinformation> {
     Widget Avatar = Container(
       child: Row(
         children: [
-          Container(
-            width: 150,
-            height: 150,
-            padding: EdgeInsets.only(left: 20, top: 20),
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(100)),
-              child: Image.network(
-                    dotenv.env['API_URL_CUS']! +'/upload/users/' + imageUser,
-                    width: 271,
-                    height: 132,
-                    fit: BoxFit.cover,
-                  ),
-            ),
-          ),
+          // Container(
+          //   width: 150,
+          //   height: 150,
+          //   padding: EdgeInsets.only(left: 20, top: 20),
+          //   child: ClipRRect(
+          //     borderRadius: BorderRadius.all(Radius.circular(100)),
+          //     child: Image.network(
+          //           dotenv.env['API_URL_CUS']! +'/upload/users/' + imageUser,
+          //           width: 271,
+          //           height: 132,
+          //           fit: BoxFit.cover,
+          //         ),
+          //   ),
+          // ),
           Container(
             padding: EdgeInsets.all(20),
             child: Text(

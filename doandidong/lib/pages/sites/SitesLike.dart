@@ -115,15 +115,12 @@ class SitesLikeState extends State<SitesLike> {
                           ),
                         ),
                         clipBehavior: Clip.antiAlias,
-                        child: Image.network(
-                          dotenv.env['API_URL_CUS']! +
-                              '/upload/post/' +
-                              lstPost[index].image,
-                          /*a.image*/
-                          width: double.maxFinite,
+                        child: 
+                         Image.asset('images/logomoi.png'
+                         , width: double.maxFinite,
                           height: 210,
-                          fit: BoxFit.cover,
-                        ),
+                          fit: BoxFit.cover,),
+                      
                       ),
                       Positioned(
                         top: 106,
