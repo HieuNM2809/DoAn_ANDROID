@@ -12,6 +12,7 @@ class ListSites extends StatefulWidget {
 }
 
 class _ListSitesState extends State<ListSites> {
+  SiteProvider _siteList = SiteProvider();
   List<SitesObject> Site = [];
   void lssite() async {
     final data = await SiteProvider.getAllSite();
@@ -172,12 +173,7 @@ class _ListSitesState extends State<ListSites> {
           Container(
             child: IconButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Search(),
-                  ),
-                );
+                showSearch(context: context, delegate: Search());
               },
               icon: Icon(Icons.search),
             ),
@@ -192,142 +188,138 @@ class _ListSitesState extends State<ListSites> {
       body: Center(
         child: Column(
           children: [
-            _ChoseRegion,
-            _AllSites,
             Expanded(
-              child: ListView.builder(
-                itemCount: Site.length,
-                itemBuilder: (context, index) => Container(
-                  margin: EdgeInsets.all(5),
-                  child: Card(
-                    child: InkWell(
-                      splashColor: Colors.blue.withAlpha(30),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DetailSites()));
-                      },
-                      child: Container(
-                        margin: EdgeInsets.all(5),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Load hình ảnh
-                            Container(
-                              padding: EdgeInsets.only(left: 5, right: 5),
-                              width: 100,
-                              height: 90,
-                              child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                child: Image.network(
-                                  dotenv.env['API_URL_CUS']! +
-                                  "/upload/sites/${Site[index].image}",
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-
-                            SizedBox(
-                              width: 4,
-                              height: 4,
-                            ),
-                            // Tên nơi lưu trú
-                            Column(
+              child: FutureBuilder<List<SitesObject>>(
+                future: _siteList.getAllSites(),
+                builder: (
+                  context,
+                  snapshot,
+                ) {
+                  var data = snapshot.data;
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return ListView.builder(
+                    itemCount: data?.length,
+                    itemBuilder: (context, index) => Container(
+                      margin: EdgeInsets.all(5),
+                      child: Card(
+                        child: InkWell(
+                          splashColor: Colors.blue.withAlpha(30),
+                          onTap: () async {
+                            final data = await SiteProvider.getAllSite();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailSites()));
+                          },
+                          child: Container(
+                            margin: EdgeInsets.all(5),
+                            child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                // Load hình ảnh
                                 Container(
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        Site[index].name,
-                                        softWrap: true,
-                                        style: TextStyle(
-                                          color: Colors.blue,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Icon(
-                                        Icons.border_color_outlined,
-                                      ),
-                                    ],
+                                  padding: EdgeInsets.only(left: 5, right: 5),
+                                  width: 100,
+                                  height: 90,
+                                  child: ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    child: Image.network(
+                                      dotenv.env['API_URL_CUS']! +
+                                          "/upload/sites/${data?[index].image}",
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
+
                                 SizedBox(
                                   width: 4,
                                   height: 4,
                                 ),
-                                Container(
-                                  child: Text(
-                                    // Site[index].description,
-                                    'Quá tuyệt vời',
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                    softWrap: true,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                // Container(
-                                //   child: Row(
-                                //     children: [
-                                //       Icon(
-                                //         Icons.location_on,
-                                //         color: Colors.red,
-                                //       ),
-                                //       Text(
-                                //         Site[index].description,
-                                //         softWrap: true,
-                                //         style: TextStyle(
-                                //             color: Colors.black,
-                                //             fontSize: 18,
-                                //             fontWeight: FontWeight.bold),
-                                //       ),
-                                //     ],
-                                //   ),
-                                // ),
-                                Container(
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        child: Row(
-                                          children: [
-                                            IconButton(
-                                              onPressed: () {},
-                                              icon: Icon(
-                                                Icons.favorite,
-                                                color: Colors.red,
-                                              ),
+                                // Tên nơi lưu trú
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            '${data?[index].name}',
+                                            softWrap: true,
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
                                             ),
-                                            Text('251'),
-                                          ],
-                                        ),
+                                          ),
+                                          Icon(
+                                            Icons.border_color_outlined,
+                                          ),
+                                        ],
                                       ),
-                                      Container(
-                                        child: Row(
-                                          children: [
-                                            IconButton(
-                                              onPressed: () {},
-                                              icon: Icon(Icons.share),
+                                    ),
+                                    SizedBox(
+                                      width: 4,
+                                      height: 4,
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 250,
+                                      child: Text(
+                                        '${data?[index].description}',
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 2,
+                                        softWrap: true,
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            child: Row(
+                                              children: [
+                                                IconButton(
+                                                  onPressed: () {},
+                                                  icon: Icon(
+                                                    Icons.favorite,
+                                                    color: Colors.red,
+                                                  ),
+                                                ),
+                                                Text('251'),
+                                              ],
                                             ),
-                                            Text('34')
-                                          ],
-                                        ),
+                                          ),
+                                          Container(
+                                            child: Row(
+                                              children: [
+                                                IconButton(
+                                                  onPressed: () {},
+                                                  icon: Icon(Icons.share),
+                                                ),
+                                                Text('34')
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
             ),
           ],

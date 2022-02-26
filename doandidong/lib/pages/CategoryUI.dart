@@ -248,12 +248,7 @@ class _CategoryUIState extends State<CategoryUI> {
           Container(
             child: IconButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Search(),
-                  ),
-                );
+                showSearch(context: context, delegate: Search());
               },
               icon: Icon(Icons.search),
             ),

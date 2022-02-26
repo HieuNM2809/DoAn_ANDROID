@@ -3,6 +3,7 @@ import 'package:doandidong/backend/provider/sites_provider.dart';
 import 'package:doandidong/pages/DetailSites.dart';
 import 'package:doandidong/pages/ListSites.dart';
 import 'package:doandidong/pages/RestaurantCategory.dart';
+import 'package:doandidong/pages/Search.dart';
 import 'package:doandidong/pages/listshotel.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -220,7 +221,9 @@ class HomePageState extends State<HomePage> {
         actions: [
           Container(
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showSearch(context: context, delegate: Search());
+              },
               icon: Icon(Icons.search),
             ),
           ),

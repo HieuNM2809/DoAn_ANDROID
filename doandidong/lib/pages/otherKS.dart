@@ -174,12 +174,7 @@ class OrtherKSState extends State<OrtherKS> {
           Container(
             child: IconButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Search(),
-                  ),
-                );
+                showSearch(context: context, delegate: Search());
               },
               icon: Icon(Icons.search),
             ),

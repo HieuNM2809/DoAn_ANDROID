@@ -1,4 +1,5 @@
 import 'package:doandidong/pages/ListSites.dart';
+import 'package:doandidong/pages/Search.dart';
 import 'package:doandidong/pages/ortherhotel.dart';
 import 'package:doandidong/pages/ortherrestaurant.dart';
 import 'package:doandidong/pages/otherKS.dart';
@@ -39,16 +40,30 @@ class DetailSitesState extends State<DetailSites> {
               'images/Vung_Tau.jpg',
             ),
           ),
-          IconButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ListSites()));
-            },
-            icon: Icon(
-              Icons.arrow_back_sharp,
-              color: Colors.white,
-            ),
-          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ListSites()));
+                },
+                icon: Icon(
+                  Icons.arrow_back_sharp,
+                  color: Colors.white,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  showSearch(context: context, delegate: Search());
+                },
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
