@@ -4,6 +4,7 @@ import 'package:doandidong/layout/footter.dart';
 import 'package:doandidong/pages/DetailSites.dart';
 import 'package:doandidong/pages/Search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ListSites extends StatefulWidget {
   @override
@@ -11,6 +12,19 @@ class ListSites extends StatefulWidget {
 }
 
 class _ListSitesState extends State<ListSites> {
+  List<SitesObject> Site = [];
+  void lssite() async {
+    final data = await SiteProvider.getAllSite();
+    setState(() {});
+    Site = data;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    lssite();
+  }
+
   Widget _ChoseRegion = Container(
     padding: EdgeInsets.only(top: 15),
     child: Row(
@@ -120,19 +134,6 @@ class _ListSitesState extends State<ListSites> {
     ),
   );
 
-  List<SitesObject> _Sites = [];
-  void lsSite() async {
-    final data = await SiteProvider.getAllSite();
-    setState(() {});
-    _Sites = data;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    lsSite();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -195,7 +196,7 @@ class _ListSitesState extends State<ListSites> {
             _AllSites,
             Expanded(
               child: ListView.builder(
-                itemCount: _Sites.length,
+                itemCount: Site.length,
                 itemBuilder: (context, index) => Container(
                   margin: EdgeInsets.all(5),
                   child: Card(
@@ -212,6 +213,7 @@ class _ListSitesState extends State<ListSites> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // Load hình ảnh
                             Container(
                               padding: EdgeInsets.only(left: 5, right: 5),
                               width: 100,
@@ -219,16 +221,19 @@ class _ListSitesState extends State<ListSites> {
                               child: ClipRRect(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
-                                child: Image.asset(
-                                  'images/Vung_Tau.jpg',
+                                child: Image.network(
+                                  dotenv.env['API_URL_CUS']! +
+                                  "/upload/sites/${Site[index].image}",
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
+
                             SizedBox(
                               width: 4,
                               height: 4,
                             ),
+                            // Tên nơi lưu trú
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -236,7 +241,7 @@ class _ListSitesState extends State<ListSites> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        _Sites[index].name,
+                                        Site[index].name,
                                         softWrap: true,
                                         style: TextStyle(
                                           color: Colors.blue,
@@ -255,10 +260,9 @@ class _ListSitesState extends State<ListSites> {
                                   height: 4,
                                 ),
                                 Container(
-                                  height: 40,
-                                  width: 250,
                                   child: Text(
-                                    _Sites[index].description,
+                                    // Site[index].description,
+                                    'Quá tuyệt vời',
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
                                     softWrap: true,
@@ -267,20 +271,51 @@ class _ListSitesState extends State<ListSites> {
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
+                                // Container(
+                                //   child: Row(
+                                //     children: [
+                                //       Icon(
+                                //         Icons.location_on,
+                                //         color: Colors.red,
+                                //       ),
+                                //       Text(
+                                //         Site[index].description,
+                                //         softWrap: true,
+                                //         style: TextStyle(
+                                //             color: Colors.black,
+                                //             fontSize: 18,
+                                //             fontWeight: FontWeight.bold),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
                                 Container(
                                   child: Row(
                                     children: [
-                                      Icon(
-                                        Icons.location_on,
-                                        color: Colors.red,
+                                      Container(
+                                        child: Row(
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {},
+                                              icon: Icon(
+                                                Icons.favorite,
+                                                color: Colors.red,
+                                              ),
+                                            ),
+                                            Text('251'),
+                                          ],
+                                        ),
                                       ),
-                                      Text(
-                                        'Bản đồ chỉ dẫn',
-                                        softWrap: true,
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
+                                      Container(
+                                        child: Row(
+                                          children: [
+                                            IconButton(
+                                              onPressed: () {},
+                                              icon: Icon(Icons.share),
+                                            ),
+                                            Text('34')
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),

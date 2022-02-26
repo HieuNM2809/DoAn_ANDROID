@@ -6,6 +6,7 @@ import 'package:doandidong/pages/Search.dart';
 import 'package:doandidong/pages/detailhotel.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ListHotel extends StatefulWidget {
   const ListHotel({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class ListHotel extends StatefulWidget {
 }
 
 class ListHotelState extends State<ListHotel> {
-  String url = "http://10.32.0.59:80/upload/hotel/";
+  // String url = "http://10.32.0.59:80/upload/hotel/";
   List<HotelObject> Hotel = [];
   void lshotel() async {
     final data = await HotelProvider.getAllHotel();
@@ -226,7 +227,8 @@ class ListHotelState extends State<ListHotel> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(10)),
                                 child: Image.network(
-                                  "http://10.32.0.59:80/DoAn_PHP_NC/DoAn_Laravel/public/upload/hotel/${Hotel[index].image}",
+                                  dotenv.env['API_URL_CUS']! +
+                                      "/upload/hotel/${Hotel[index].image}",
                                   fit: BoxFit.cover,
                                 ),
                               ),

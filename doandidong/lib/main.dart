@@ -6,7 +6,7 @@ import 'package:doandidong/pages/RestaurantCategory.dart';
 import 'package:doandidong/pages/accountPost.dart';
 import 'package:doandidong/pages/add.dart';
 import 'package:doandidong/pages/confirmPassword.dart';
-import 'package:doandidong/pages/hotelCategory.dart';
+import 'package:doandidong/pages/SitesPage.dart';
 import 'package:doandidong/pages/loading.dart';
 import 'package:doandidong/pages/login.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Đồ án',
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: LoadingPage(),
     );
   }
 }

@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:doandidong/backend/object/post_object.dart';
+import 'package:doandidong/backend/object/user_object.dart';
+import 'package:doandidong/backend/provider/user_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:doandidong/layout/footter.dart';
 import 'package:flutter/services.dart';
@@ -17,6 +19,9 @@ class Add extends StatefulWidget {
 }
 
 class _AddState extends State<Add> {
+  late final UserObject user;
+  String nameUser = 'No Name';
+  String imageUser = 'No Image';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _txtControllerBody = TextEditingController();
   File? img;
@@ -84,7 +89,7 @@ class _AddState extends State<Add> {
                       Container(
                         padding: EdgeInsets.only(left: 20),
                         child: Text(
-                          'Họ và tên',
+                          nameUser,
                           style: TextStyle(fontSize: 16),
                         ),
                       ),

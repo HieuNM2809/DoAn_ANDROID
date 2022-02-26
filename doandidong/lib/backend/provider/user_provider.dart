@@ -12,15 +12,18 @@ class UserProvider {
     final pased = jsonDecode(reponseBody).cast<Map<String, dynamic>>();
     return pased.map<UserObject>((e) => UserObject.fromJson(e)).toList();
   }
+
   static List<PostObject> parsePost(String responseBody) {
     final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
     return parsed.map<PostObject>((e) => PostObject.fromJson(e)).toList();
   }
+
   static List<SitesObjectLike> parseSitesObjectLike(String responseBody) {
     final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
-    return parsed.map<SitesObjectLike>((e) => SitesObjectLike.fromJson(e)).toList();
+    return parsed
+        .map<SitesObjectLike>((e) => SitesObjectLike.fromJson(e))
+        .toList();
   }
-  
 
   static Future<dynamic> getToken() async {
     /* ==== Lấy token từ Storage ==== */
@@ -28,17 +31,19 @@ class UserProvider {
     var token = pres.getString('token');
     return token;
   }
+
   static Future<dynamic> getIdLogin() async {
     /* ==== Lấy token từ Storage ==== */
     SharedPreferences pres2 = await SharedPreferences.getInstance();
     var id = pres2.getInt('id');
     return id;
   }
+
   static Future<bool> login(String email, String password) async {
     // String url =  'http://dulich.local/api/sanctum/token';
-    String url =  dotenv.env['API_URL_CUS']! +'/api/sanctum/token';
+    String url = dotenv.env['API_URL_CUS']! + '/api/sanctum/token';
     final response = await http.post(Uri.parse(url),
-        body:( {
+        body: ({
           'email': email,
           'password': password,
         }));
@@ -59,21 +64,20 @@ class UserProvider {
   }
 
   /* ====  Register ==== */
-  static Future<bool> register(String name, String email, String password) async {
-    String url =  dotenv.env['API_URL_CUS']! +'/api/user';
+  static Future<bool> register(
+      String name, String email, String password) async {
+    String url = dotenv.env['API_URL_CUS']! + '/api/user';
     final response = await http.post(Uri.parse(url),
-        body: jsonEncode(
-          {
-            "name" :name,
-            "user":name,
-            "password1" :password,
-            "image": "1.png",
-            "birthday" : "28-09-2001",
-            "position" :"4",
-            "email": email,
-            "phone" :""
-          }
-        ),
+        body: jsonEncode({
+          "name": name,
+          "user": name,
+          "password1": password,
+          "image": "1.png",
+          "birthday": "28-09-2001",
+          "position": "4",
+          "email": email,
+          "phone": ""
+        }),
         headers: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
@@ -90,7 +94,8 @@ class UserProvider {
   /* ==== Logout ==== */
   static Future<bool> logout() async {
     var token = await getToken();
-     String url =  dotenv.env['API_URL_CUS']! +'/api/sanctum/user/deleteTokenUserCurrent';
+    String url =
+        dotenv.env['API_URL_CUS']! + '/api/sanctum/user/deleteTokenUserCurrent';
     final response = await http.get(Uri.parse(url), headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -103,10 +108,9 @@ class UserProvider {
       return false;
     }
   }
-   
 
   //=========== Ds bai viet User chia se
-   static Future<List<PostObject>> getAllPost() async {
+  static Future<List<PostObject>> getAllPost() async {
     String url = dotenv.env['API_URL_CUS']! + '/api/post';
     Map<String, String> userHeader = {
       "Content-type": "application/json",
@@ -116,9 +120,9 @@ class UserProvider {
     return parsePost(response.body);
   }
 
-    //=========== Ds bai viet User chia se
-   static Future<List<SitesObjectLike>> getSiteLike() async {
-     var id = await getIdLogin();
+  //=========== Ds bai viet User chia se
+  static Future<List<SitesObjectLike>> getSiteLike() async {
+    var id = await getIdLogin();
     String url = dotenv.env['API_URL_CUS']! + '/api/listDiaDanhLike/$id';
     Map<String, String> userHeader = {
       "Content-type": "application/json",
@@ -128,10 +132,9 @@ class UserProvider {
     return parseSitesObjectLike(response.body);
   }
 
-  
- static Future<UserObject> getUser() async {
+  static Future<UserObject> getUser() async {
     var token = await getToken();
-    String url =  dotenv.env['API_URL_CUS']! +'/api/sanctum/user';
+    String url = dotenv.env['API_URL_CUS']! + '/api/sanctum/user';
     final response = await http.get(Uri.parse(url), headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
@@ -143,21 +146,20 @@ class UserProvider {
   }
 
   /* ==== Register ==== */
-  static Future<bool> updateInfoUser( String name,String email, String phone) async {
+  static Future<bool> updateInfoUser(
+      String name, String email, String phone) async {
     var id = await getIdLogin();
-   String url =  dotenv.env['API_URL_CUS']! +'/api/user/$id';
+    String url = dotenv.env['API_URL_CUS']! + '/api/user/$id';
     final response = await http.put(Uri.parse(url),
-        body: jsonEncode(
-          {
-            "name" :name,
-            "user":name,
-            "image": "1.png",
-            "birthday" : "28-09-2001",
-            "position" :"4",
-            "email": email,
-            "phone" :phone
-          }
-        ),
+        body: jsonEncode({
+          "name": name,
+          "user": name,
+          "image": "1.png",
+          "birthday": "28-09-2001",
+          "position": "4",
+          "email": email,
+          "phone": phone
+        }),
         headers: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
@@ -169,15 +171,14 @@ class UserProvider {
       return false;
     }
   }
-  static Future<bool> changepasword( String password) async {
+
+  static Future<bool> changepasword(String password) async {
     var id = await getIdLogin();
-   String url =  dotenv.env['API_URL_CUS']! +'/api/user/changepassword/$id';
+    String url = dotenv.env['API_URL_CUS']! + '/api/user/changepassword/$id';
     final response = await http.post(Uri.parse(url),
-        body: jsonEncode(
-          {
-            "password" :password,
-          }
-        ),
+        body: jsonEncode({
+          "password": password,
+        }),
         headers: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
@@ -189,17 +190,17 @@ class UserProvider {
       return false;
     }
   }
-   /* ====  Register ==== */
-  static Future<bool> suggestSite(String name, String description, String address) async {
-    String url =  dotenv.env['API_URL_CUS']! +'/api/sites';
+
+  /* ====  Register ==== */
+  static Future<bool> suggestSite(
+      String name, String description, String address) async {
+    String url = dotenv.env['API_URL_CUS']! + '/api/sites';
     final response = await http.post(Uri.parse(url),
-        body: jsonEncode(
-          {
-            "name" :name,
-            "description" :description,
-            "status": "1",  // chua duyet
-          }
-        ),
+        body: jsonEncode({
+          "name": name,
+          "description": description,
+          "status": "1", // chua duyet
+        }),
         headers: {
           'Content-type': 'application/json',
           'Accept': 'application/json',
@@ -212,6 +213,4 @@ class UserProvider {
       return false;
     }
   }
- 
-
 }

@@ -1,6 +1,7 @@
 import 'package:doandidong/pages/CategoryUI.dart';
 import 'package:doandidong/pages/accountsetting.dart';
 import 'package:doandidong/pages/home.dart';
+import 'package:doandidong/pages/SitesPage.dart';
 import 'package:flutter/material.dart';
 import 'package:doandidong/pages/ListSites.dart';
 import 'package:doandidong/pages/accountPost.dart';
@@ -19,6 +20,7 @@ class FootterPageState extends State<FootterPage> {
   int SelectedIndex = 0;
   List<Widget> _widgetOption = <Widget>[
     HomePage(),
+    SitesPage(),
     CategoryUI(),
     Add(),
     AccountPost(),
@@ -40,6 +42,10 @@ class FootterPageState extends State<FootterPage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.home, color: Colors.grey),
               title: Text('Home'),
+              backgroundColor: Colors.white),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.beach_access_rounded, color: Colors.grey),
+              title: Text('Sites'),
               backgroundColor: Colors.white),
           BottomNavigationBarItem(
               icon: Icon(Icons.category, color: Colors.grey),

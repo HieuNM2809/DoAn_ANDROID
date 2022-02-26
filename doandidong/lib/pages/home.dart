@@ -1,8 +1,12 @@
+import 'package:doandidong/backend/object/sites_object.dart';
+import 'package:doandidong/backend/provider/sites_provider.dart';
+import 'package:doandidong/pages/DetailSites.dart';
 import 'package:doandidong/pages/ListSites.dart';
 import 'package:doandidong/pages/RestaurantCategory.dart';
 import 'package:doandidong/pages/listshotel.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -14,16 +18,21 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  int currentPos = 0;
-  List<String> ListPaths = [
-    "images/bmt.png",
-    "images/ganhdadia.png",
-    "images/thac.png",
-    "images/Sapa.jpg",
-  ];
+  List<SitesObject> Site = [];
+  void lshotel() async {
+    final data = await SiteProvider.getAllSite();
+    setState(() {});
+    Site = data;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    lshotel();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var ImageList;
     Widget DanhMuc = Center(
       child: Column(
         children: [
@@ -173,6 +182,15 @@ class HomePageState extends State<HomePage> {
         ],
       ),
     );
+    Widget NewSites = Container(
+      padding: EdgeInsets.only(top: 10, left: 10, bottom: 10),
+      alignment: Alignment.centerLeft,
+      child: Text(
+        'Bài viết địa danh',
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff33ccff),
@@ -215,144 +233,142 @@ class HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          // slider(),
           DanhMuc,
-          Center(
-            child: Column(
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 10, left: 10),
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Danh sách',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
+          NewSites,
+          Expanded(
+            child: ListView.builder(
+              itemCount: Site.length,
+              itemBuilder: (context, index) => Container(
+                margin: EdgeInsets.all(5),
+                child: Card(
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetailSites()));
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(5),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Load hình ảnh
+                          Container(
+                            padding: EdgeInsets.only(left: 5, right: 5),
+                            width: 100,
+                            height: 90,
+                            child: ClipRRect(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                              child: Image.network(
+                                dotenv.env['API_URL_CUS']! +
+                                    "/upload/sites/${Site[index].image}",
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+
+                          SizedBox(
+                            width: 4,
+                            height: 4,
+                          ),
+                          // Tên nơi lưu trú
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      Site[index].name,
+                                      softWrap: true,
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.border_color_outlined,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: 4,
+                                height: 4,
+                              ),
+                              Container(
+                                child: Text(
+                                  // Site[index].description,
+                                  'Quá tuyệt vời',
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                  softWrap: true,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              // Container(
+                              //   child: Row(
+                              //     children: [
+                              //       Icon(
+                              //         Icons.location_on,
+                              //         color: Colors.red,
+                              //       ),
+                              //       Text(
+                              //         Site[index].description,
+                              //         softWrap: true,
+                              //         style: TextStyle(
+                              //             color: Colors.black,
+                              //             fontSize: 18,
+                              //             fontWeight: FontWeight.bold),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          IconButton(
+                                            onPressed: () {},
+                                            icon: Icon(
+                                              Icons.favorite,
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                          Text('251'),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          IconButton(
+                                            onPressed: () {},
+                                            icon: Icon(Icons.share),
+                                          ),
+                                          Text('34')
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          padding:
-                              EdgeInsets.only(top: 15, left: 10, right: 10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: InkWell(
-                              splashColor: Colors.blue.withAlpha(30),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ListSites()));
-                              },
-                              child: Image.asset(
-                                'images/ganhdadia.png',
-                                fit: BoxFit.fill,
-                                width: 500,
-                                height: 140,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 105, left: 20),
-                          width: 180,
-                          child: Text(
-                            'Địa danh',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              backgroundColor: Colors.black54,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Stack(
-                      children: [
-                        Container(
-                          padding:
-                              EdgeInsets.only(top: 15, left: 10, right: 10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: InkWell(
-                              splashColor: Colors.blue.withAlpha(30),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ListHotel()));
-                              },
-                              child: Image.asset(
-                                'images/khachsan.png',
-                                fit: BoxFit.fill,
-                                width: 500,
-                                height: 140,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 105, left: 20),
-                          width: 180,
-                          child: Text(
-                            'Khách sạn',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              backgroundColor: Colors.black54,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Stack(
-                      children: [
-                        Container(
-                          padding:
-                              EdgeInsets.only(top: 15, left: 10, right: 10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: InkWell(
-                              splashColor: Colors.blue.withAlpha(30),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            RestaurantCategory()));
-                              },
-                              child: Image.asset(
-                                'images/quanan.png',
-                                fit: BoxFit.fill,
-                                width: 500,
-                                height: 140,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(top: 105, left: 20),
-                          width: 180,
-                          child: Text(
-                            'Quán ăn',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              backgroundColor: Colors.black54,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
           ),
         ],

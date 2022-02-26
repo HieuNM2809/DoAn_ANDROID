@@ -5,7 +5,7 @@ import 'dart:convert';
 
 class HotelProvider {
   static Future<List<dynamic>> parseHotels() async {
-    var url = "http://10.0.2.2:8000/api/hotel";
+    var url = "http://192.168.1.5/api/hotel";
     var response =
         await http.get(Uri.parse(url), headers: {"Accept": "application/json"});
     var data = json.decode(response.body);

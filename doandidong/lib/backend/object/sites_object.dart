@@ -5,6 +5,8 @@ class SitesObject {
   final String hot;
   final int countshare;
   final int id_types_sites;
+  final String image;
+
   SitesObject(
     this.id,
     this.name,
@@ -12,6 +14,7 @@ class SitesObject {
     this.hot,
     this.countshare,
     this.id_types_sites,
+    this.image,
   );
   SitesObject.fromJson(Map<String, dynamic> r)
       : id = r['id'],
@@ -19,5 +22,6 @@ class SitesObject {
         description = r['description'],
         hot = r['status'],
         countshare = r['countshare'],
-        id_types_sites = r['id_types_sites'];
+        id_types_sites = r['id_types_sites'],
+        image = r['image'];
 }
