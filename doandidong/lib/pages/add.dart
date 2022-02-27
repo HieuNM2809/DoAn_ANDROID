@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:doandidong/backend/object/post_object.dart';
@@ -7,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:doandidong/layout/footter.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Add extends StatefulWidget {
   final PostObject? add;
@@ -47,6 +50,49 @@ class _AddState extends State<Add> {
   //     logout().then((values))
   //   }
   // }
+  Future<void> _loadData() async {
+    await UserProvider.getUser();
+    SharedPreferences pres = await SharedPreferences.getInstance();
+    String us = pres.getString("user") ?? '';
+    user = UserObject.fromJson(jsonDecode(us));
+    setState(() {});
+    nameUser = user.name;
+    imageUser = user.image;
+
+    //load post
+    // final data = await UserProvider.getAllPost();
+    // setState(() {});
+    // lstPost = data;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  TextEditingController txt = TextEditingController();
+  Dang() {
+    if (txt.text.isEmpty || txt.text.length < 300) {
+      showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Thông báo'),
+          content: const Text('Không được bỏ trống và tối đa 300 ký tự'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FootterPage()));
+              },
+              child: const Text('Đồng ý'),
+            ),
+          ],
+        ),
+      );
+    }
+    ;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +145,7 @@ class _AddState extends State<Add> {
                 Container(
                   padding: EdgeInsets.only(left: 20, top: 30, bottom: 20),
                   child: TextField(
+                    controller: txt,
                     decoration: InputDecoration.collapsed(
                       hintText: 'Bạn đã đi đến đâu rồi?',
                       hintStyle: TextStyle(fontSize: 18, color: Colors.grey),
@@ -151,10 +198,7 @@ class _AddState extends State<Add> {
                             child: const Text('Huỷ'),
                           ),
                           TextButton(
-                            onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => FootterPage())),
+                            onPressed: () => Dang(),
                             child: const Text('Đồng ý'),
                           ),
                         ],
