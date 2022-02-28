@@ -72,13 +72,22 @@ class _CategoryUIState extends State<CategoryUI> {
                 children: [
                   Container(
                     padding: EdgeInsets.only(top: 15, left: 10, right: 10),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.asset(
-                        'images/nghiduong.png',
-                        fit: BoxFit.fill,
-                        width: 500,
-                        height: 140,
+                    child: InkWell(
+                      splashColor: Colors.blue.withAlpha(30),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListSites()));
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.asset(
+                          'images/nghiduong.png',
+                          fit: BoxFit.fill,
+                          width: 500,
+                          height: 140,
+                        ),
                       ),
                     ),
                   ),
@@ -101,13 +110,22 @@ class _CategoryUIState extends State<CategoryUI> {
                 children: [
                   Container(
                     padding: EdgeInsets.only(top: 15, left: 10, right: 10),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.asset(
-                        'images/camtrai.png',
-                        fit: BoxFit.fill,
-                        width: 500,
-                        height: 140,
+                    child: InkWell(
+                      splashColor: Colors.blue.withAlpha(30),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListSites()));
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.asset(
+                          'images/camtrai.png',
+                          fit: BoxFit.fill,
+                          width: 500,
+                          height: 140,
+                        ),
                       ),
                     ),
                   ),
@@ -130,13 +148,22 @@ class _CategoryUIState extends State<CategoryUI> {
                 children: [
                   Container(
                     padding: EdgeInsets.only(top: 15, left: 10, right: 10),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.asset(
-                        'images/dangoai.png',
-                        fit: BoxFit.fill,
-                        width: 500,
-                        height: 140,
+                    child: InkWell(
+                      splashColor: Colors.blue.withAlpha(30),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListSites()));
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.asset(
+                          'images/dangoai.png',
+                          fit: BoxFit.fill,
+                          width: 500,
+                          height: 140,
+                        ),
                       ),
                     ),
                   ),
@@ -159,13 +186,22 @@ class _CategoryUIState extends State<CategoryUI> {
                 children: [
                   Container(
                     padding: EdgeInsets.only(top: 15, left: 10, right: 10),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.asset(
-                        'images/giadinh.png',
-                        fit: BoxFit.fill,
-                        width: 500,
-                        height: 140,
+                    child: InkWell(
+                      splashColor: Colors.blue.withAlpha(30),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListSites()));
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.asset(
+                          'images/giadinh.png',
+                          fit: BoxFit.fill,
+                          width: 500,
+                          height: 140,
+                        ),
                       ),
                     ),
                   ),
@@ -188,13 +224,22 @@ class _CategoryUIState extends State<CategoryUI> {
                 children: [
                   Container(
                     padding: EdgeInsets.only(top: 15, left: 10, right: 10),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.asset(
-                        'images/capdoi.png',
-                        fit: BoxFit.fill,
-                        width: 500,
-                        height: 140,
+                    child: InkWell(
+                      splashColor: Colors.blue.withAlpha(30),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListSites()));
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.asset(
+                          'images/capdoi.png',
+                          fit: BoxFit.fill,
+                          width: 500,
+                          height: 140,
+                        ),
                       ),
                     ),
                   ),
