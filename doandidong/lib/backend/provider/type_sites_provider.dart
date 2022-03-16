@@ -13,7 +13,7 @@ class TypeSiteProvider {
 
   static Future<List<SitesObject>> fecthHarbou() async {
     final response =
-        await http.get(Uri.parse('http://192.168.1.9:80/api/types-sites'));
+        await http.get(Uri.parse('http://192.168.1.4:80/api/types-sites'));
     return parseTS(response.body);
   }
 }

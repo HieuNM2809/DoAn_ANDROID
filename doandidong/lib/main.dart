@@ -21,6 +21,7 @@ import 'package:doandidong/pages/home.dart';
 import 'package:doandidong/pages/CategoryUI.dart';
 import 'package:doandidong/pages/listshotel.dart';
 import 'package:doandidong/pages/ortherhotel.dart';
+import 'package:doandidong/pages/slider.dart';
 
 void main() async {
   await dotenv.load();

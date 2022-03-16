@@ -22,7 +22,8 @@ class SitesPageState extends State<SitesPage> {
         title: Stack(
           children: [
             Container(
-              alignment: Alignment.center,
+              padding: EdgeInsets.only(left: 100),
+              // alignment: Alignment.center,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

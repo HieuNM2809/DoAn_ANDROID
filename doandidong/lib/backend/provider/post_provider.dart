@@ -14,7 +14,7 @@ class PostProvider {
 
   static Future<List<PostObject>> fecthHarbou() async {
     final response =
-        await http.get(Uri.parse('http://192.168.1.9:80/api/post'));
+        await http.get(Uri.parse('http://192.168.1.4:80/api/post'));
     return parsePO(response.body);
   }
 }

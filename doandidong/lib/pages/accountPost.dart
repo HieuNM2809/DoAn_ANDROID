@@ -400,7 +400,8 @@ class AccountPostState extends State<AccountPost> {
         title: Stack(
           children: [
             Container(
-              alignment: Alignment.center,
+              padding: EdgeInsets.only(left: 50),
+              // alignment: Alignment.center,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -455,8 +456,7 @@ class AccountPostState extends State<AccountPost> {
                         height: 150,
                         padding: EdgeInsets.only(right: 10),
                         child: ClipRRect(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10)),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
                           child: Image.asset(
                             'images/bmt.png',
                             fit: BoxFit.cover,
@@ -474,7 +474,7 @@ class AccountPostState extends State<AccountPost> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => PostShare()));
                     },
-                   icon: Icon(Icons.search),
+                    icon: Icon(Icons.search),
                   ),
                 ],
               ),
@@ -485,7 +485,7 @@ class AccountPostState extends State<AccountPost> {
               indent: 20,
               endIndent: 20,
             ),
-             Container(
+            Container(
               padding: EdgeInsets.only(left: 10),
               child: Column(
                 children: [
@@ -496,8 +496,7 @@ class AccountPostState extends State<AccountPost> {
                         height: 150,
                         padding: EdgeInsets.only(right: 10),
                         child: ClipRRect(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10)),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
                           child: Image.asset(
                             'images/dalat.png',
                             fit: BoxFit.cover,
@@ -515,7 +514,7 @@ class AccountPostState extends State<AccountPost> {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => SitesLike()));
                     },
-                   icon: Icon(Icons.search),
+                    icon: Icon(Icons.search),
                   ),
                 ],
               ),

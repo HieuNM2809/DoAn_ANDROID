@@ -9,7 +9,7 @@ import 'package:doandidong/layout/footter.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 
 class Add extends StatefulWidget {
   final PostObject? add;
@@ -74,22 +74,22 @@ class _AddState extends State<Add> {
   TextEditingController txt = TextEditingController();
   Dang() {
     if (txt.text.isEmpty || txt.text.length < 300) {
-      showDialog<String>(
-        context: context,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('Thông báo'),
-          content: const Text('Không được bỏ trống và tối đa 300 ký tự'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => FootterPage()));
-              },
-              child: const Text('Đồng ý'),
-            ),
-          ],
-        ),
-      );
+      // showDialog<String>(
+      //   context: context,
+      //   builder: (BuildContext context) => AlertDialog(
+      //     title: const Text('Thông báo'),
+      //     content: const Text('Không được bỏ trống và tối đa 300 ký tự'),
+      //     actions: <Widget>[
+      //       TextButton(
+      //         onPressed: () {
+      //           Navigator.push(context,
+      //               MaterialPageRoute(builder: (context) => FootterPage()));
+      //         },
+      //         child: const Text('Đồng ý'),
+      //       ),
+      //     ],
+      //   ),
+      // );
     }
     ;
   }
@@ -231,7 +231,8 @@ class _AddState extends State<Add> {
         title: Stack(
           children: [
             Container(
-              alignment: Alignment.center,
+              padding: EdgeInsets.only(left: 100),
+              // alignment: Alignment.center,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

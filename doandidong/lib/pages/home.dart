@@ -8,6 +8,8 @@ import 'package:doandidong/pages/listshotel.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:doandidong/pages/slider.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -32,8 +34,22 @@ class HomePageState extends State<HomePage> {
     lshotel();
   }
 
+  int activeIdnex = 0;
+  final urlImages = [
+    'https://cdn.yeudulich.com/940x630/media/attraction/attraction/VNMVUY01.jpg',
+    'https://cdn3.ivivu.com/2016/07/da-voi-me-yang-tao-ivivu-2.jpg',
+    'https://dulichquynhon.com/wp-content/uploads/2018/01/thap-duong-long-binh-dinh-1-696x450.jpg'
+  ];
   @override
   Widget build(BuildContext context) {
+    Widget abc(String urlImage, int index) => Container(
+          margin: EdgeInsets.symmetric(horizontal: 24),
+          color: Colors.grey,
+          child: Image.network(
+            urlImage,
+            fit: BoxFit.cover,
+          ),
+        );
     Widget DanhMuc = Center(
       child: Column(
         children: [
@@ -97,7 +113,7 @@ class HomePageState extends State<HomePage> {
                   Container(
                     width: 120,
                     height: 80,
-                    padding: EdgeInsets.only(left: 10),
+                    padding: EdgeInsets.only(left: 5),
                     child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       child: Image.asset(
@@ -198,7 +214,8 @@ class HomePageState extends State<HomePage> {
         title: Stack(
           children: [
             Container(
-              alignment: Alignment.center,
+              padding: EdgeInsets.only(left: 100),
+              // alignment: Alignment.center,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -236,6 +253,25 @@ class HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
+          Container(
+            padding: EdgeInsets.only(top: 10),
+            child: CarouselSlider.builder(
+              itemCount: urlImages.length,
+              itemBuilder: (context, index, realIndex) {
+                final urlImage = urlImages[index];
+                return abc(urlImage, index);
+              },
+              options: CarouselOptions(
+                height: 200,
+                autoPlay: true,
+                enlargeCenterPage: true,
+                enlargeStrategy: CenterPageEnlargeStrategy.height,
+                autoPlayInterval: Duration(seconds: 2),
+                onPageChanged: (index, reason) =>
+                    setState(() => activeIdnex = index),
+              ),
+            ),
+          ),
           DanhMuc,
           NewSites,
           Expanded(

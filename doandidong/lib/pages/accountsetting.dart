@@ -219,10 +219,8 @@ class AcSettingState extends State<AcSetting> {
                 SizedBox(width: 20),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Suggest()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Suggest()));
                   },
                   child: Text(
                     'Đề xuất địa danh',
@@ -235,11 +233,10 @@ class AcSettingState extends State<AcSetting> {
               ],
             ),
           ),
-         
         ],
       ),
     );
-   
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff33ccff),
@@ -252,7 +249,8 @@ class AcSettingState extends State<AcSetting> {
         title: Stack(
           children: [
             Container(
-              alignment: Alignment.center,
+              padding: EdgeInsets.only(left: 50),
+              // alignment: Alignment.center,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -302,7 +300,6 @@ class AcSettingState extends State<AcSetting> {
                 indent: 20,
                 endIndent: 20),
             Infomation,
-            
           ],
         ),
       ),
